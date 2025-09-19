@@ -15,3 +15,11 @@
     color: darkgrey;
     padding: 20px;
 }
+
+a {
+    text-decoration: none;
+}
+
+.list-item:hover {
+    background-color: whitesmoke;
+}
