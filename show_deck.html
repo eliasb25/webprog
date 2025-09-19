@@ -17,20 +17,25 @@
 <body>
     <div id="header"></div>
 
-    <div class="container mt-5"> 
+    <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
 
                 <h1>Mathe - Karte 2</h1>
 
                 <form>
-                    <div class="mb-3"> <label for="frontInput" class="form-label">Front</label>
-                        <input type="text" class="form-control" id="frontInput" placeholder="This is what you see on the front of the card.">
-                    </div>
                     <div class="mb-3">
-                        <label for="backInput" class="form-label">Back</label>
-                        <input type="password" class="form-control" id="backInput" placeholder="This is what you see on the back of the card.">
+                        <label for="frontInput" class="form-label">Front</label>
+                        <input type="text" class="form-control" id="frontInput"
+                            placeholder="This is what you see on the front of the card.">
                     </div>
+
+                    <div class="mb-3">
+                        <label for="backTextarea" class="form-label">Back</label>
+                        <textarea class="form-control" id="backTextarea" rows="4"
+                            placeholder="This is what you see on the back of the card."></textarea>
+                    </div>
+
                     <button type="submit" class="btn btn-dark">Speichern</button>
                 </form>
 
