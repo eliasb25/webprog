@@ -5,3 +5,13 @@
     height: 2.5rem;
     margin-right: .5rem;
 }
+
+.list-item {
+    height: 50px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.5px solid #C8C8C8;
+    color: darkgrey;
+    padding: 20px;
+}
