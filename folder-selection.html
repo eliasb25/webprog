@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="js/header.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <script>
+    const menuItems = document.querySelectorAll('#menuList .list-group-item');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Alle entfernen
+            menuItems.forEach(i => i.classList.remove('active'));
+            // Nur das angeklickte hinzufügen
+            item.classList.add('active');
+        });
+    });
+</script>
+    <div data-bs-backdrop="false" class="offcanvas offcanvas-start show"
+        style="visibility: visible; transform: none; top:55px;" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Verzeichnisse</h5>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group" id="menuList">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Mathe</a>
+                <a href="#" class="list-group-item list-group-item-action">BWL</a>
+                <a href="#" class="list-group-item list-group-item-action">Informatik</a>
+                <a href="#" class="list-group-item list-group-item-action">Wirtschaftsinformatik</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
