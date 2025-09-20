@@ -1,0 +1,24 @@
+.highlight-card {
+    border: 1px solid #6c757d; 
+    border-radius: 15px;
+    padding: 10px 12px;       
+  }
+
+#back {
+    height: 40px;
+}
+
+.icon-lg {
+    height: 75px; 
+    width: auto;
+  }
+
+  .icon-button {
+    /* Sorgt für einen sanften Übergang beim Hover-Effekt */
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .icon-button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
