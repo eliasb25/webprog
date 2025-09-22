@@ -6,7 +6,7 @@
     margin-right: .5rem;
 }
 
-.list-item {
+.menu-item {
     height: 50px;
     margin: 0;
     display: flex;
@@ -20,6 +20,6 @@ a {
     text-decoration: none;
 }
 
-.list-item:hover {
+.menu-item:hover {
     background-color: whitesmoke;
 }
