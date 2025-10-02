@@ -1,12 +1,12 @@
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
 .logo {
     height: 2.5rem;
     margin-right: .5rem;
+}
+main.flex-grow-1 > .row {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 .menu-item {
