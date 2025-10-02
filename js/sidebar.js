@@ -1,3 +1,5 @@
+folders = [];
+
 window.addEventListener("load", ()=>{
     let menuItems = document.getElementsByClassName("menu-item");
     for(let i = 0; i < menuItems.length; i++){
