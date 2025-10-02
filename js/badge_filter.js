@@ -1,4 +1,3 @@
-// Führe das Skript aus, sobald die Seite vollständig geladen ist
 document.addEventListener('DOMContentLoaded', function() {
 
     const filterSelect = document.getElementById('badgeFilter');
