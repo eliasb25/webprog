@@ -1,4 +1,4 @@
-class folder {
+export class Folder {
     #name;
     #cards;
 
