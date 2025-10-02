@@ -16,6 +16,7 @@
     crossorigin="anonymous"></script>
     <script src="js/header.js"></script>
     <script src="js/badge_filter.js"></script>
+    <script src="js/badge_details.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -37,34 +38,66 @@
 
         <div class="row g-4" id="badgeContainer">
 
-    <div class="col-6 col-md-3 col-lg-2" data-status="erreichte">
-        <div class="badge-container achieved">
-            <img src="rsc/fire.png" alt="Badge 1" class="badge-icon">
+        <div class="col-6 col-md-3 col-lg-2" 
+            data-status="erreichte" data-bs-toggle="modal"
+            data-bs-target="#badgeDetailModal"
+            data-title="Feuer und Flamme"
+            data-img-src="rsc/fire.png"
+            data-description="Du hast deine erste Herausforderung abgeschlossen. Weiter so!">
+            <div class="badge-container achieved">
+                <img src="rsc/fire.png" alt="Badge 1" class="badge-icon">
+            </div>
+            <p class="text-center mt-2"><strong>Badge 1</strong></p>
         </div>
-        <p class="text-center mt-2"><strong>Badge 1</strong></p>
-    </div>
 
-    <div class="col-6 col-md-3 col-lg-2" data-status="erreichte">
-        <div class="badge-container achieved">
-            <img src="rsc/training.png" alt="Badge 2" class="badge-icon">
+        <div class="col-6 col-md-3 col-lg-2" 
+            data-status="erreichte"
+            data-bs-toggle="modal"
+            data-bs-target="#badgeDetailModal"
+            data-title="Text"
+            data-img-src="rsc/training.png"
+            data-description="...">
+            <div class="badge-container achieved">
+                <img src="rsc/training.png" alt="Badge 2" class="badge-icon">
+            </div>
+            <p class="text-center mt-2"><strong>Badge 2</strong></p>
         </div>
-        <p class="text-center mt-2"><strong>Badge 2</strong></p>
-    </div>
 
-    <div class="col-6 col-md-3 col-lg-2" data-status="gesperrt">
-        <div class="badge-container locked">
-            <img src="rsc/shuttle.png" alt="Badge 3" class="badge-icon">
+        <div class="col-6 col-md-3 col-lg-2" 
+            data-status="gesperrt"
+            data-bs-toggle="modal"
+            data-bs-target="#badgeDetailModal"
+            data-title="Text"
+            data-img-src="rsc/shuttle.png"
+            data-description="...">
+            <div class="badge-container locked">
+                <img src="rsc/shuttle.png" alt="Badge 3" class="badge-icon">
+            </div>
+            <p class="text-center mt-2">Badge 3</p>
         </div>
-        <p class="text-center mt-2">Badge 3</p>
-    </div>
 
     </div>
 
     </div>
-</div>
-</main>
+    </div>
+    </main>
 
         <div id="footer"></div>
+
+        <div class="modal fade" id="badgeDetailModal" tabindex="-1" aria-labelledby="modalBadgeTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalBadgeTitle">Badge-Titel</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="" id="modalBadgeImage" class="img-fluid mb-3" style="max-height: 150px;">
+                        <p id="modalBadgeDescription">Hier steht die Beschreibung des Badges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
