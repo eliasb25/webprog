@@ -1,8 +1,8 @@
 fetch('header.html') // The path to the HTML file
-            .then(response => response.text()) // Get the response as text
-            .then(htmlContent => {
-                // Find the container element
-                const container = document.getElementById('header');
+    .then(response => response.text()) // Get the response as text
+    .then(htmlContent => {
+        // Find the container element
+        const container = document.getElementById('header');
 
                 // Insert the fetched HTML content into the container
                 container.innerHTML = htmlContent;
