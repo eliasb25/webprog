@@ -1,0 +1,27 @@
+.badge-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20%; 
+}
+
+.badge-icon {
+    width: 500%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.badge-container.achieved {
+    background-color: #faf7e3;
+}
+
+.badge-container.locked {
+    background-color: #f0f0f0;
+    filter: grayscale(80%);
+    opacity: 0.7;
+}
