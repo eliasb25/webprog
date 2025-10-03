@@ -116,3 +116,15 @@ a {
     height: 25%;
 }
 
+.space-above {
+    margin-top: 50px;
+}
+
+.bg-yellow {
+    background-color: #fff6c2;
+}
+
+.button-size {
+    width: 300px;
+}
+
