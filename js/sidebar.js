@@ -23,4 +23,13 @@ window.addEventListener("load", ()=>{
             console.log(text);
         })
     }
+
+    let folders = document.getElementsByClassName("accordion-button");
+    console.log(folders);
+    for(let i = 0; i < folders.length; i++) {
+        folders[i].addEventListener("click", (event) => {
+            console.log("test");
+            event.target.classList.add("bg-yellow");
+        });
+    }
 });

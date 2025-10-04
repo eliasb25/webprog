@@ -108,6 +108,10 @@ a {
     box-shadow: none;
 }
 
+.accordion-button:not(.collapsed) {
+    background-color: #fff6c2;
+}
+
 .row {
     display: flex;
     flex-direction: row;
