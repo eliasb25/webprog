@@ -34,10 +34,20 @@
     <div class="page-display">
         <div class="sidebar" id="sidebar"></div>
         <div class="column">
-            <div class="bg-white text-black p-4 rounded-3 podium-card" style="margin-top: 20px;">
-                <p class="fs-5">Dein aktueller Streak:</p>
-                <h2 class="fw-bolder">12 Tage</h2>
-                <p class="fs-5" style="margin-top: 50px;">Deine neuesten Badges:</p>
+            <div class="bg-white text-black p-4 rounded-3 podium-card width60" style="margin-top: 20px;">
+                <div class="row">
+                    <div>
+                        <span class="fs-5">Dein aktueller Streak:</span>
+                        <h2 class="fw-bolder">12 Tage</h2>
+                    </div>
+                    <div>
+                        <span class="fs-5">Streak Rekord:</span>
+                        <h2 class="fw-bolder">18 Tage</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white text-black p-4 rounded-3 podium-card width60" style="margin-top: 20px;">
+                <p class="fs-5">Deine neuesten Badges:</p>
                 <div class="row">
                     <div class="col-6 col-md-3 col-lg-2 small-badge" data-status="erreichte" data-bs-toggle="modal"
                         data-bs-target="#badgeDetailModal" data-title="Feuer und Flamme" data-img-src="rsc/fire.png"
@@ -60,25 +70,22 @@
             </div>
             <!-- <h3 class="offcanvas-title" style="margin-top: 20px;">Aktueller Streak</h3>
             <h1 class="offcanvas-title" style="margin-top: 5vh;">12 Tage</h1> -->
-            <div class="row space-above">
-                <div class="col-4 col-md-3 order-2 order-md-1 button-size">
-                    <div class="bg-dark text-white p-4 rounded-3 podium-card">
-                        <span class="fs-5">Verzeichnis annlegen</span>
+            <div class="row space-above width60">
+                <div class="wrapping">
+                    <div class="col-4 col-md-3 order-2 order-md-1 button-size" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="bg-dark text-white p-4 rounded-3 podium-card">
+                            <span class="fs-5">Verzeichnis annlegen</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4 col-md-3 order-2 order-md-1 button-size">
-                    <div class="bg-yellow p-4 rounded-3 podium-card">
-                        <span class="fs-5">Abfrage starten</span>
+                <div class="wrapping">
+                    <div class="col-4 col-md-3 order-2 order-md-1 button-size">
+                        <div class="bg-yellow p-4 rounded-3 podium-card">
+                            <span class="fs-5">Abfrage starten</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                style="margin-top: 5vh;">
-                <div><img src="rsc/plus.jpg" class="icon">Verzeichnis anlegen</div>
-            </button>
-            <button class="btn btn-primary yellow button" type="button" style="margin-top: 2vh;">
-                <div><img src="rsc/lightbulb.jpg" class="icon">Abfrage starten</div>
-            </button>
         </div>
         <p></p>
     </div>

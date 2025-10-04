@@ -98,7 +98,10 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.width60 {
+    width: 60%;
 }
 
 .accordion-button:focus {
@@ -126,5 +129,19 @@ a {
 
 .button-size {
     width: 300px;
+    transition-duration: 0.5s;
+}
+
+.button-size:hover {
+    width: 320px;
+    height: auto;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.wrapping {
+    width: 400px;
+    display: flex;
+    justify-content: center;
 }
 
