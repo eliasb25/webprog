@@ -1,4 +1,4 @@
-folders = ["Deutsch", "Englisch", "Mathe"];
+folders = [new Folder("Deutsch"), new Folder("Englisch"), new Folder("Mathe")];
 
 window.addEventListener("load", () => {
     fetch('sidebar.html') // The path to the HTML file
@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
                 let div = document.createElement("div");
                 div.id = `accordionItem-${i}`;
                 div.className = "accordion-item";
-                div.innerHTML = createMenuItem(i, folders[i]);
+                div.innerHTML = createMenuItem(i, folders[i].getName());
                 menu.appendChild(div);
             }
         })
