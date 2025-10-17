@@ -19,20 +19,12 @@ window.addEventListener("load", () => {
                 div.innerHTML = createMenuItem(i, folders[i].getName());
                 menu.appendChild(div);
             }
+
+            addCardsEventListeners();
         })
         .catch(error => {
             console.error('Error fetching the HTML file:', error);
         });
-
-    let menuItems = document.getElementsByClassName("menu-item");
-    for (let i = 0; i < menuItems.length; i++) {
-        menuItems[i].addEventListener("click", (event) => {
-            let parent = event.target.parentElement.parentElement.parentElement.parentElement;
-            let text = parent.querySelector(".accordion-button").innerText;
-            text += " - " + event.target.innerText;
-            console.log(text);
-        })
-    }
 
     /* let folders = document.getElementsByClassName("accordion-button");
     console.log(folders);
@@ -43,3 +35,15 @@ window.addEventListener("load", () => {
         });
     } */
 });
+
+function addCardsEventListeners() {
+    let menuItems = document.getElementsByClassName("menu-item");
+    for (let i = 0; i < menuItems.length; i++) {
+        menuItems[i].addEventListener("click", (event) => {
+            let parent = event.target.parentElement.parentElement.parentElement.parentElement;
+            let text = parent.querySelector(".accordion-button").innerText;
+            text += " - " + event.target.innerText;
+            console.log(text);
+        })
+    }
+}
