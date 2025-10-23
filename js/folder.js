@@ -1,4 +1,4 @@
-export class Folder {
+class Folder {
     #name;
     #cards;
 
@@ -12,5 +12,9 @@ export class Folder {
 
     setCards(cards){
         this.#cards = cards;
+    }
+
+    getName(){
+        return this.#name;
     }
 }
