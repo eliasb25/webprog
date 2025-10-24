@@ -17,11 +17,14 @@ export function loadUserName() {
 
 };
 
-export function signOut(){
-    const logoutButton = document.getElementById("logout-button");
+export function deleteAccount(){
+    const logoutButton = document.getElementById("delete-account-button");
 
     logoutButton.addEventListener("click", function(event) {
+
         event.preventDefault();
+
+        if (window.confirm("ACHTUNG!\n\Möchtest du dein Konto wirklich DAUERHAFT löschen?\n\nAlle deine Daten gehen dabei verloren und können nicht wiederhergestellt werden.")) {
 
         const emailToDelete = sessionStorage.getItem("currentUserEmail");
 
@@ -35,5 +38,18 @@ export function signOut(){
         
         sessionStorage.removeItem("currentUserEmail");
         window.location.href = "sign-up-page.html";
+    }
+    });
+}
+
+export function signOut(){
+    const logoutButton = document.getElementById("sign-out-button");
+
+    logoutButton.addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        sessionStorage.removeItem("currentUserEmail");
+        window.location.href = "login-page.html";
     });
 }
