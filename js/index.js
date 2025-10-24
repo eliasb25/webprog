@@ -24,6 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (bestStreakEl) {
                         bestStreakEl.textContent = `${currentUser.bestStreak} Tage`;
                     }
+
+                    const progressBarFg = document.querySelector(".progress-bar-fg");
+
+                    if (progressBarFg) {
+                        const currentStreak = currentUser.currentStreak || 0;
+                        const bestStreak = currentUser.bestStreak || 0;
+
+                        let percentage = 0;
+
+                        if (bestStreak > 0) {
+                            percentage = Math.min((currentStreak / bestStreak) * 100, 100);
+                        }
+                        
+                        progressBarFg.style.width = `${percentage}%`;
+                    }
                 } else {
                     console.error("Eingeloggter Benutzer konnte nicht in localStorage gefunden werden.");
                 }
