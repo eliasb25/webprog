@@ -15,7 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (userExists) {
             alert("Diese E-Mail-Adresse ist bereits registriert!");
         } else {
-            users.push({ email: email, password: password });
+            users.push({ 
+                email: email, 
+                password: password, 
+                currentStreak: 0,
+                bestStreak: 0,
+                lastLoginDate: null
+            });
 
             localStorage.setItem("users", JSON.stringify(users));
 

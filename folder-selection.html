@@ -14,18 +14,7 @@
         crossorigin="anonymous"></script>
     <script type="module" src="js/header.js"></script>
     <script src="js/profil.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabLinks = document.querySelectorAll('#list-tab .list-group-item');
-
-            tabLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault(); 
-                    console.log('Angeklickt:', link.id);
-                });
-            });
-        });
-    </script>
+    <script src="js/index.js"></script>
     <script src="js/folder.js"></script>
     <script src="js/createMenuItem.js"></script>
     <script src="js/sidebar.js"></script>
@@ -41,11 +30,11 @@
                 <div class="row">
                     <div class="col-6 text-center">
                         <span class="fs-5">Dein aktueller Streak:</span>
-                        <h2 class="fw-bolder">12 Tage</h2>
+                        <h2 class="fw-bolder" id="current-streak-display">0 Tage</h2>
                     </div>
                     <div class="col-6 text-center">
                         <span class="fs-5">Streak Rekord:</span>
-                        <h2 class="fw-bolder">18 Tage</h2>
+                        <h2 class="fw-bolder" id="best-streak-display">0 Tage</h2>
                     </div>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fg"></div></div>
