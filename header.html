@@ -45,6 +45,7 @@
     </div>
 </nav>
 
+<!--Profil-->
 <div class="modal fade modal-top-right" id="userProfileModal" tabindex="-1" aria-labelledby="userProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -54,11 +55,12 @@
             </div>
             <div class="modal-body text-center">
                 <img src="https://i.pravatar.cc/150?img=5" class="rounded-circle mb-3" alt="Profilbild" width="90" height="90">
-                <h4 class="mb-0">Helena Krämer</h4>
+                <h4 class="mb-0" id="profile-email"></h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
-                <a href="/logout" class="btn btn-danger">Abmelden</a>
+                
+                <a href="#" id="logout-button" class="btn btn-danger">Abmelden</a>
             </div>
         </div>
     </div>
