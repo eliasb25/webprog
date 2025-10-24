@@ -1,4 +1,5 @@
 import { loadUserName } from './profil.js';
+import { signOut } from './profil.js';
 
 window.addEventListener("load",async () => {
     await fetch('header.html') 
@@ -24,4 +25,6 @@ window.addEventListener("load",async () => {
         });
     
     loadUserName();
+    signOut();
+    
 });
