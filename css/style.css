@@ -168,4 +168,16 @@ a {
     border-radius: 10px;
 }
 
+.menu-button {
+    border-bottom: none;
+    color: white;
+}
 
+.menu-button:hover {
+    background-color: white;
+}
+
+.plus-icon {
+    width: 20px;
+    margin-right: 10px;
+}

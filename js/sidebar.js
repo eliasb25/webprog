@@ -21,6 +21,8 @@ window.addEventListener("load", () => {
             }
 
             addCardsEventListeners();
+            addButtonsEventListeners();
+
         })
         .catch(error => {
             console.error('Error fetching the HTML file:', error);
@@ -36,8 +38,20 @@ window.addEventListener("load", () => {
     } */
 });
 
+
+function addButtonsEventListeners() {
+    let addButtons = document.querySelectorAll(".menu-item.bg-dark.menu-button");
+    for (let i = 0; i < addButtons.length; i++) {
+        addButtons[i].addEventListener("click", (event) => {
+            console.log(event.target.textContent);
+        });
+    }
+}
+
+
 function addCardsEventListeners() {
-    let menuItems = document.getElementsByClassName("menu-item");
+    let menuItemsAll = document.querySelectorAll(".menu-item");
+    let menuItems = [...menuItemsAll].filter((element) => element.classList.length == 1);
     for (let i = 0; i < menuItems.length; i++) {
         menuItems[i].addEventListener("click", (event) => {
             let parent = event.target.parentElement.parentElement.parentElement.parentElement;
