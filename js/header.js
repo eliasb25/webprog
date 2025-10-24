@@ -1,28 +1,27 @@
+import { loadUserName } from './profil.js';
 
-window.addEventListener("load", () => {
-    fetch('header.html') // The path to the HTML file
-        .then(response => response.text()) // Get the response as text
+window.addEventListener("load",async () => {
+    await fetch('header.html') 
+        .then(response => response.text()) 
         .then(htmlContent => {
-            // Find the container element
             const container = document.getElementById('header');
 
-            // Insert the fetched HTML content into the container
             container.innerHTML = htmlContent;
         })
         .catch(error => {
             console.error('Error fetching the HTML file:', error);
         });
 
-    fetch('footer.html') // The path to the HTML file
-        .then(response => response.text()) // Get the response as text
+    fetch('footer.html')
+        .then(response => response.text())
         .then(htmlContent => {
-            // Find the container element
             const container = document.getElementById('footer');
 
-            // Insert the fetched HTML content into the container
             container.innerHTML = htmlContent;
         })
         .catch(error => {
             console.error('Error fetching the HTML file:', error);
         });
+    
+    loadUserName();
 });

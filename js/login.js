@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const userFound = users.find(user => user.email === email && user.password === password);
 
         if (userFound) {
+            sessionStorage.setItem("currentUserEmail", userFound.email);
             window.location.href = "folder-selection.html";
         } else {
             alert("Falsche E-Mail oder falsches Passwort.");
