@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             sessionStorage.setItem("currentUserEmail", userFound.email);
-            window.location.href = "folder-selection.html";
+            window.location.href = "index.html";
         } else {
             alert("Falsche E-Mail oder falsches Passwort.");
         }
