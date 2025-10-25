@@ -169,3 +169,19 @@ a {
 }
 
 
+/* Den Plus-Button standardmäßig ausblenden, wenn das Accordion eingeklappt ist */
+.accordion-button.collapsed .add-card-btn {
+  opacity: 0;
+  pointer-events: none; /* Verhindert Klicks im unsichtbaren Zustand */
+}
+
+/* Den Button einblenden, wenn das Accordion ausgeklappt ist */
+.accordion-button:not(.collapsed) .add-card-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Optional: Eine sanfte Überblendung hinzufügen */
+.add-card-btn {
+  transition: opacity 0.15s ease-in-out;
+}

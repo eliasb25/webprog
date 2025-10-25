@@ -1,35 +1,48 @@
-import { Folder } from "./folder.js";
-import { Card } from "./card.js";
 import { createMenuItem } from "./createMenuItem.js";
 
 
-let folder1 = new Folder("Deutsch");
-folder1.addCard(new Card("Rechtschreibung", "Inhalt 1"));
-folder1.addCard(new Card("Rechtschreibung2", "Inhalt 2"));
-folder1.addCard(new Card("Rechtschreibung3", "Inhalt 3"));
-folder1.addCard(new Card("Rechtschreibung4", "Inhalt 4"));
-
-let folder2 = new Folder("Englisch");
-
-let folder3 = new Folder("Mathe");
 
 
 
 
 
+let folders = [];
+if (localStorage.getItem("Folders")) {
+    const jsonString = localStorage.getItem("Folders");
+    folders = JSON.parse(jsonString);
+}
 
-const jsonString = JSON.stringify(folder1, null, 2);
-localStorage.setItem(folder1.getName(), jsonString);
-
-
-
-
-
-
-
-let folders = [folder1, folder2, folder3];
 
 window.addEventListener("load", () => {
+    let createButton = document.getElementById("anlegenButton");
+    createButton.addEventListener("click", () => {
+        let input = document.getElementById("verzeichnis-name");
+        let folder = {name: input.value, cards: []};
+
+        folders.push(folder);
+        createFolders(folders);
+
+        const jsonString = JSON.stringify(folders, null, 2);
+        localStorage.setItem("Folders", jsonString);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+window.addEventListener("load", () => {
+    createFolders(folders);
+});
+
+function createFolders(folders){
     fetch('sidebar.html') // The path to the HTML file
         .then(response => response.text()) // Get the response as text
         .then(htmlContent => {
@@ -45,7 +58,7 @@ window.addEventListener("load", () => {
                 let div = document.createElement("div");
                 div.id = `accordionItem-${i}`;
                 div.className = "accordion-item";
-                div.innerHTML = createMenuItem(i, folders[i].getName(), folders[i].getCards());
+                div.innerHTML = createMenuItem(i, folders[i].name, folders[i].cards);
 
 
 
@@ -66,7 +79,7 @@ window.addEventListener("load", () => {
             event.target.classList.add("bg-yellow");
         });
     } */
-});
+}
 
 function addCardsEventListeners() {
     let menuItems = document.getElementsByClassName("menu-item");
@@ -75,6 +88,7 @@ function addCardsEventListeners() {
             let parent = event.target.parentElement.parentElement.parentElement.parentElement;
             let text = parent.querySelector(".accordion-button").innerText;
             text += " - " + event.target.innerText;
+            
             console.log(text);
         })
     }
