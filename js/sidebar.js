@@ -1,4 +1,33 @@
-folders = [new Folder("Deutsch"), new Folder("Englisch"), new Folder("Mathe")];
+import { Folder } from "./folder.js";
+import { Card } from "./card.js";
+import { createMenuItem } from "./createMenuItem.js";
+
+
+let folder1 = new Folder("Deutsch");
+folder1.addCard(new Card("Rechtschreibung", "Inhalt 1"));
+folder1.addCard(new Card("Rechtschreibung2", "Inhalt 2"));
+folder1.addCard(new Card("Rechtschreibung3", "Inhalt 3"));
+folder1.addCard(new Card("Rechtschreibung4", "Inhalt 4"));
+
+let folder2 = new Folder("Englisch");
+
+let folder3 = new Folder("Mathe");
+
+
+
+
+
+
+const jsonString = JSON.stringify(folder1, null, 2);
+localStorage.setItem(folder1.getName(), jsonString);
+
+
+
+
+
+
+
+let folders = [folder1, folder2, folder3];
 
 window.addEventListener("load", () => {
     fetch('sidebar.html') // The path to the HTML file
@@ -16,7 +45,10 @@ window.addEventListener("load", () => {
                 let div = document.createElement("div");
                 div.id = `accordionItem-${i}`;
                 div.className = "accordion-item";
-                div.innerHTML = createMenuItem(i, folders[i].getName());
+                div.innerHTML = createMenuItem(i, folders[i].getName(), folders[i].getCards());
+
+
+
                 menu.appendChild(div);
             }
 

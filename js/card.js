@@ -1,9 +1,9 @@
-class Card {
+export class Card {
     #front;
     #back;
     #imageLink;
 
-    Card(front, back) {
+    constructor(front, back) {
         this.front = front;
         this.back = back;
     }
@@ -17,10 +17,10 @@ class Card {
     }
 
     getFront(){
-        return this.#front;
+        return this.front;
     }
 
     getBack(){
-        return this.#back;
+        return this.back;
     }
 }
