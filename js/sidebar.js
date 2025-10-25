@@ -25,20 +25,6 @@ window.addEventListener("load", () => {
         const jsonString = JSON.stringify(folders, null, 2);
         localStorage.setItem("Folders", jsonString);
     });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-window.addEventListener("load", () => {
     createFolders(folders);
 });
 
