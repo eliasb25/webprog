@@ -80,7 +80,7 @@ function addButtonListener(folder, index) {
         let card = {front: inputFront.value, back: inputBack.value};
         folder.cards.push(card);
 
-        let menuItem = document.getElementById(`panelsStayOpen-collapse${index}`);
+        let menuItem = document.getElementById(`cards-section${index}`);
         let displayCard = document.createElement("div");
         displayCard.innerHTML = createCard(card.front);
         menuItem.appendChild(displayCard);

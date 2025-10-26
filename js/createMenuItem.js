@@ -12,12 +12,13 @@ export function createMenuItem(num, folder){
                 +'</button>'
             +'</h2>'
             +`<div id="panelsStayOpen-collapse${num}" class="accordion-collapse collapse"`
-               +`aria-labelledby="panelsStayOpen-heading${num}">`;
+               +`aria-labelledby="panelsStayOpen-heading${num}">`
+               +`<div id="cards-section${num}">`;
     
     for(let i = 0; i < folder.cards.length; i++){
         res += createCard(folder.cards[i].front);
     }
-
+    res += `</div>`;
     res += createAddButton(num);
 
     return res +'</div>';
