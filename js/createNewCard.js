@@ -1,11 +1,16 @@
 export function showCreateSection(folder){
     console.log(folder.name);
     let mainView = document.getElementById("mainView");
-    mainView.innerHTML = getCreateSectionHTML(folder.name);
+    let parent = mainView.parentElement;
+    mainView.remove();
+    let div = document.createElement("div");
+    div.innerHTML = getCreateSectionHTML(folder.name);
+    div.classList.add("createSection");
+    parent.appendChild(div);
 }
 
 function getCreateSectionHTML(name){
-    return `<div class="container my-5">
+    return `<div class="container my-5" style="margin-left: auto; margin-right: auto">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <h2 class="text-center mb-4">Neue Karteikarte für ${name} erstellen</h2>

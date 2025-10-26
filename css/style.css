@@ -171,19 +171,20 @@ a {
 
 /* Den Plus-Button standardmäßig ausblenden, wenn das Accordion eingeklappt ist */
 .accordion-button.collapsed .add-card-btn {
-  opacity: 0;
-  pointer-events: none; /* Verhindert Klicks im unsichtbaren Zustand */
+    opacity: 0;
+    pointer-events: none;
+    /* Verhindert Klicks im unsichtbaren Zustand */
 }
 
 /* Den Button einblenden, wenn das Accordion ausgeklappt ist */
 .accordion-button:not(.collapsed) .add-card-btn {
-  opacity: 1;
-  pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* Optional: Eine sanfte Überblendung hinzufügen */
 .add-card-btn {
-  transition: opacity 0.15s ease-in-out;
+    transition: opacity 0.15s ease-in-out;
 }
 
 .menu-button {
@@ -198,4 +199,105 @@ a {
 .plus-icon {
     width: 20px;
     margin-right: 10px;
+}
+
+
+
+/* Stil für die Hauptkarte (Panel) */
+.custom-card-shadow {
+    border: none;
+    /* Entferne den Standard-Bootstrap-Rand */
+    border-radius: 1rem;
+    /* Abgerundete Ecken */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    /* Dezenter Schatten wie im Beispiel */
+}
+
+/* Stil für Input- und Textarea-Felder */
+.custom-input {
+    border: 1px solid #dee2e6;
+    /* Leichter Rand */
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.custom-input:focus {
+    border-color: #ffda00;
+    /* Leichter gelber Fokus-Effekt (an die primäre Farbe angepasst) */
+    box-shadow: 0 0 0 0.25rem rgba(255, 203, 5, 0.25);
+}
+
+/* Stil für die Labels, um sie etwas dezenter zu machen */
+.custom-label-style {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+/* Stil für den Primär-Button (Abfrage starten/Speichern) - Gelb/Beige */
+.custom-btn-primary {
+    background-color: #fffbdf;
+    /* Hellgelb/Beige */
+    color: #343a40;
+    /* Dunkle Schrift */
+    border: 1px solid #ffda00;
+    /* Leichter gelber Rand */
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+.custom-btn-primary:hover {
+    background-color: #fff7cc;
+    /* Heller bei Hover */
+    border-color: #ffc107;
+}
+
+/* Stil für den Sekundär-Button (Verzeichnis anlegen/Löschen) - Dunkelgrau */
+.custom-btn-secondary {
+    background-color: #343a40;
+    /* Dunkelgrau */
+    color: #ffffff;
+    /* Weiße Schrift */
+    border: 1px solid #343a40;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+.custom-btn-secondary:hover {
+    background-color: #212529;
+    /* Dunkler bei Hover */
+    border-color: #212529;
+}
+
+/* Stil für das Datei-Input-Feld (Bild-Upload) */
+.custom-input-file::file-selector-button {
+    background-color: #f1f1f1;
+    color: #343a40;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    border-radius: 0.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.custom-input-file::file-selector-button:hover {
+    background-color: #e2e6ea;
+}
+
+.card.p-4.custom-card-shadow {
+    margin-top: 20px;
+}
+
+.p-4.rounded-3.podium-card {
+    text-align: center;
+}
+
+.createSection {
+    width: 80%;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
 }
