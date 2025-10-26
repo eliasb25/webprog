@@ -44,7 +44,7 @@ function createFolders(folders){
                 let div = document.createElement("div");
                 div.id = `accordionItem-${i}`;
                 div.className = "accordion-item";
-                div.innerHTML = createMenuItem(i, folders[i].name, folders[i].cards);
+                div.innerHTML = createMenuItem(i, folders[i]);
 
 
 
