@@ -19,6 +19,8 @@ export function createMenuItem(num, folder){
         res += createCard(folder.cards[i].front);
     }
 
+    res += createAddButton(num);
+
     return res +'</div>';
 }
 
@@ -30,4 +32,27 @@ export function createCard(name){
                     </div>
                 </div>
             </a>`;
+}
+
+function createAddButton() {
+
+    return `<a href="#">
+                    <div class="accordion-body" style="padding: 0;">
+                        <div class="menu-item bg-dark menu-button">
+                            <img src="rsc/white-plus.jpg" class="plus-icon"></img>
+                            <span>Neue Karte</span>
+                        </div>
+                    </div>
+                </a>`;
+}
+
+
+function addButtonsEventListeners() {
+    let addButtons = document.querySelectorAll(".menu-item.bg-dark.menu-button");
+    for (let i = 0; i < addButtons.length; i++) {
+        addButtons[i].addEventListener("click", (event) => {
+            sessionStorage.setItem("selected-folder",i);
+            window.location.href = "karte-anlegen.html";
+        });
+    }
 }
