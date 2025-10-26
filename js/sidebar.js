@@ -83,7 +83,7 @@ function addButtonsEventListeners() {
     let addButtons = document.querySelectorAll(".menu-item.bg-dark.menu-button");
     for (let i = 0; i < addButtons.length; i++) {
         addButtons[i].addEventListener("click", (event) => {
-            showCreateSection(folders[i]);
+            showCreateSection(folders[i], i);
         });
     }
 }

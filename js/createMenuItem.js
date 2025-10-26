@@ -7,8 +7,7 @@ export function createMenuItem(num, folder){
                     + '<span class="flex-grow-1">'
                     +   `<b>${folder.name}</b>`
                     + '</span>'
-                    + '<span role="button" class="bi bi-plus-circle-fill text-success me-2 add-card-btn">'
-                    + '</span>'
+                   
 
                 +'</button>'
             +'</h2>'
