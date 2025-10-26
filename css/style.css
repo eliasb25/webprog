@@ -185,3 +185,17 @@ a {
 .add-card-btn {
   transition: opacity 0.15s ease-in-out;
 }
+
+.menu-button {
+    border-bottom: none;
+    color: white;
+}
+
+.menu-button:hover {
+    background-color: white;
+}
+
+.plus-icon {
+    width: 20px;
+    margin-right: 10px;
+}

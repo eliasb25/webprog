@@ -1,10 +1,5 @@
 import { createMenuItem } from "./createMenuItem.js";
-
-
-
-
-
-
+import { showCreateSection } from "./createNewCard.js";
 
 let folders = [];
 if (localStorage.getItem("Folders")) {
@@ -17,7 +12,7 @@ window.addEventListener("load", () => {
     let createButton = document.getElementById("anlegenButton");
     createButton.addEventListener("click", () => {
         let input = document.getElementById("verzeichnis-name");
-        let folder = {name: input.value, cards: []};
+        let folder = { name: input.value, cards: [] };
 
         folders.push(folder);
         createFolders(folders);
@@ -28,7 +23,7 @@ window.addEventListener("load", () => {
     createFolders(folders);
 });
 
-function createFolders(folders){
+function createFolders(folders) {
     fetch('sidebar.html') // The path to the HTML file
         .then(response => response.text()) // Get the response as text
         .then(htmlContent => {
@@ -52,6 +47,7 @@ function createFolders(folders){
             }
 
             addCardsEventListeners();
+            addButtonsEventListeners();
         })
         .catch(error => {
             console.error('Error fetching the HTML file:', error);
@@ -68,14 +64,26 @@ function createFolders(folders){
 }
 
 function addCardsEventListeners() {
-    let menuItems = document.getElementsByClassName("menu-item");
+    let menuItemsAll = document.getElementsByClassName("menu-item");
+
+    let menuItems = [...menuItemsAll].filter((element) => element.classList.length == 1);
+
     for (let i = 0; i < menuItems.length; i++) {
         menuItems[i].addEventListener("click", (event) => {
             let parent = event.target.parentElement.parentElement.parentElement.parentElement;
             let text = parent.querySelector(".accordion-button").innerText;
             text += " - " + event.target.innerText;
-            
+
             console.log(text);
         })
+    }
+}
+
+function addButtonsEventListeners() {
+    let addButtons = document.querySelectorAll(".menu-item.bg-dark.menu-button");
+    for (let i = 0; i < addButtons.length; i++) {
+        addButtons[i].addEventListener("click", (event) => {
+            showCreateSection(folders[i]);
+        });
     }
 }

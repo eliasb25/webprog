@@ -45,14 +45,3 @@ function createAddButton() {
                     </div>
                 </a>`;
 }
-
-
-function addButtonsEventListeners() {
-    let addButtons = document.querySelectorAll(".menu-item.bg-dark.menu-button");
-    for (let i = 0; i < addButtons.length; i++) {
-        addButtons[i].addEventListener("click", (event) => {
-            sessionStorage.setItem("selected-folder",i);
-            window.location.href = "karte-anlegen.html";
-        });
-    }
-}
