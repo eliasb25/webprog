@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
             const tabLinks = document.querySelectorAll('#list-tab .list-group-item');
 
+            users = JSON.parse(localStorage.getItem("users")) || [];
+
             tabLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault(); 
