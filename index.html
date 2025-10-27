@@ -73,18 +73,10 @@
                     <div class="col-4 col-md-3 order-2 order-md-1 button-size" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         <div class="bg-dark text-white p-4 rounded-3 podium-card">
-                            <span class="fs-5">Verzeichnis anlegen</span>
+                            <span class="fs-5">Neues Deck anlegen</span>
                         </div>
                     </div>
                 </div>
-                
-                <a href="learning-page.html" class="wrapping" style="color:black">
-                    <div class="col-4 col-md-3 order-2 order-md-1 button-size">
-                        <div class="bg-yellow p-4 rounded-3 podium-card">
-                            <span class="fs-5">Abfrage starten</span>
-                        </div>
-                    </div>
-                </a>
                 
             </div>
         </div>
@@ -95,13 +87,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Verzeichnis anlegen</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deck anlegen</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label class="col-form-label">Name des Verzeichnisses</label>
+                            <label class="col-form-label">Name des Decks</label>
                             <input type="text" class="form-control" id="verzeichnis-name">
                         </div>
                     </form>
@@ -124,7 +116,7 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label class="col-form-label">Neuer Name des Verzeichnisses</label>
+                            <label class="col-form-label">Neuer Name des Decks</label>
                             <input type="text" class="form-control" id="edit-verzeichnis-name">
                         </div>
                     </form>
@@ -154,11 +146,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteCardModalLabel">Karte löschen</h1>
+                    <h1 class="modal-title fs-5" id="deleteCardModalLabel">Achtung!</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    Möchtest du die Karte wirklich löschen?
+                </div>
                 <div class="modal-footer">
-                    <button type="button" id="delete-KartelöschenButton" class="btn btn-primary button" style="width: auto;">Löschen</button>
+                    <button type="button" id="card-delete-Button" class="btn btn-primary button" style="width: auto;">Löschen</button>
                 </div>
             </div>
         </div>
