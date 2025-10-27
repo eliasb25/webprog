@@ -95,6 +95,8 @@ function createFolders(folders) {
                             <i class="bi bi-three-dots-vertical"></i>
                         </button>
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item learn-deck-btn" href="#" data-folder-index="${i}">Abfrage starten</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item edit-deck-btn" href="#" data-folder-index="${i}">Bearbeiten</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item delete-deck-btn text-danger" href="#" data-folder-index="${i}">Löschen</a></li>
@@ -220,6 +222,15 @@ function addDeckActionEventListeners() {
             deleteModalButton.dataset.folderIndex = index;
 
             deleteModal.show(); 
+        });
+    });
+
+    // --- Abfrage-Buttons ---
+    document.querySelectorAll(".learn-deck-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
         });
     });
 }
