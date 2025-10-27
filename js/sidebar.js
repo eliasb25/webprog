@@ -19,6 +19,42 @@ window.addEventListener("load", () => {
 
         saveFolders();
     });
+
+    const editModalElement = document.getElementById('editDeckModal');
+    if (editModalElement) {
+        const editModal = bootstrap.Modal.getOrCreateInstance(editModalElement);
+        const editModalInput = document.getElementById('edit-verzeichnis-name');
+        const editModalSaveButton = document.getElementById('edit-speichernButton');
+
+        editModalSaveButton.addEventListener('click', () => {
+            const newName = editModalInput.value.trim();
+            const index = editModalSaveButton.dataset.folderIndex; 
+
+            if (newName && index !== undefined && folders[index]) {
+                // Ordner umbenennen
+                folders[index].name = newName;
+                saveFolders();
+                createFolders(folders); // Sidebar neu aufbauen
+                editModal.hide(); // Modal schließen
+            }
+        });
+    }
+
+    const deleteModalElement = document.getElementById('deleteDeckModal');
+    if (deleteModalElement) {
+        const deleteModal = bootstrap.Modal.getOrCreateInstance(deleteModalElement);
+        let deleteButton = document.getElementById("delete-löschenButton");
+
+        deleteButton.addEventListener("click", () => {
+        const index = deleteButton.dataset.folderIndex; 
+            if(folders[index]){
+                folders.splice(index, 1); // Ordner aus dem Array entfernen
+                saveFolders();
+                createFolders(folders); // Sidebar neu aufbauen
+                deleteModal.hide();
+            }
+        });
+    }
     createFolders(folders);
 });
 
@@ -45,13 +81,52 @@ function createFolders(folders) {
                 div.className = "accordion-item";
                 div.innerHTML = createMenuItem(i, folders[i]);
 
+                let accordionButton = div.querySelector(".accordion-button");
+                if (accordionButton) {
+                    const collapseTargetId = accordionButton.dataset.bsTarget;
+                    accordionButton.removeAttribute('data-bs-toggle');
 
+                    // Dropdown-Container erstellen
+                    let dropdownDiv = document.createElement("div");
+                    dropdownDiv.className = "dropdown ms-auto folder-options-dropdown"; 
+                    
+                    dropdownDiv.innerHTML = `
+                        <button class="btn btn-sm btn-light p-1 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item edit-deck-btn" href="#" data-folder-index="${i}">Bearbeiten</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item delete-deck-btn text-danger" href="#" data-folder-index="${i}">Löschen</a></li>
+                        </ul>
+                    `;
+
+                    dropdownDiv.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                    });
+
+                    // Dropdown an den Akkordeon-Button anhängen
+                    accordionButton.appendChild(dropdownDiv);
+
+                    accordionButton.addEventListener('click', (event) => {
+                        if (event.target.closest('.folder-options-dropdown')) {
+                            return; 
+                        }
+
+                        const collapseElement = document.querySelector(collapseTargetId);
+                        if (collapseElement) {
+                            bootstrap.Collapse.getOrCreateInstance(collapseElement).toggle();
+                            accordionButton.classList.toggle('deck-open');
+                        }
+                    });
+                }
 
                 menu.appendChild(div);
             }
 
             addCardsEventListeners();
             addButtonsEventListeners();
+            addDeckActionEventListeners();
         })
         .catch(error => {
             console.error('Error fetching the HTML file:', error);
@@ -90,4 +165,56 @@ function addButtonsEventListeners() {
             showCreateSection(folders[i], i);
         });
     }
+}
+
+function addDeckActionEventListeners() {
+    const editModalElement = document.getElementById('editDeckModal');
+    if (!editModalElement) return; // Falls Modal nicht geladen ist
+    const deleteDeckElement = document.getElementById('deleteDeckModal');
+    if (!deleteDeckElement) return; // Falls Modal nicht geladen ist
+
+    const editModal = bootstrap.Modal.getOrCreateInstance(editModalElement);
+    const deleteModal = bootstrap.Modal.getOrCreateInstance(deleteDeckElement);
+    const editModalInput = document.getElementById('edit-verzeichnis-name');
+    const editModalSaveButton = document.getElementById('edit-speichernButton');
+    const editModalLabel = document.getElementById('editDeckModalLabel');
+    const deleteModalButton = document.getElementById('delete-löschenButton');
+    const deleteModalLabel = document.getElementById('deleteDeckModalLabel');
+    
+    // --- Bearbeiten-Buttons ---
+    document.querySelectorAll(".edit-deck-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            let index = event.currentTarget.dataset.folderIndex;
+            let folder = folders[index];
+            if (!folder) return;
+
+            editModalLabel.innerText = `Ordner "${folder.name}" bearbeiten`;
+            editModalInput.value = folder.name;
+            
+            editModalSaveButton.dataset.folderIndex = index;
+
+            editModal.show();
+        });
+    });
+
+    // --- Löschen-Buttons ---
+    document.querySelectorAll(".delete-deck-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            let index = event.currentTarget.dataset.folderIndex;
+            let folder = folders[index];
+            if (!folder) return;
+
+            deleteModalLabel.innerText = `Willst du Ordner "${folder.name}" wirklich löschen?`;
+
+            deleteModalButton.dataset.folderIndex = index;
+
+            deleteModal.show(); 
+        });
+    });
 }

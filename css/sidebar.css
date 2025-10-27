@@ -1,0 +1,35 @@
+.accordion-item .accordion-button {
+    position: relative;
+}
+
+.accordion-item .folder-options-dropdown {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    margin-right: 12px;
+}
+
+.accordion-item:hover .folder-options-dropdown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.accordion-item .folder-options-dropdown:hover .accordion-button::after {
+    background-image: var(--bs-accordion-btn-icon);
+}
+
+.accordion-button.deck-open {
+    background-color: #fff8c4;
+    color: #333;
+    box-shadow: none; 
+}
+
+.accordion-button::after {
+    transform: rotate(0deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.accordion-button.deck-open::after {
+    background-image: var(--bs-accordion-btn-active-icon);
+    transform: rotate(-180deg); 
+}
