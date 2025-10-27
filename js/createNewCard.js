@@ -14,19 +14,22 @@ export function showCreateSection(folder, index, update, card, menuCard) {
     } else {
         updateCreateSection(folder);
     }
-    if(update){
+    if (update) {
         changeCardView(folder, card);
         updateButtonListener(card, menuCard);
-    }else{
+        deleteButtonListener(folder, card, menuCard);
+    } else {
         addButtonListener(folder, index);
     }
 }
 
-function changeCardView(folder, card){
+function changeCardView(folder, card) {
     let heading = document.getElementById("heading-createView");
-    heading.textContent = "Karteikarte für "+folder.name+" ändern";
+    heading.textContent = "Karteikarte für " + folder.name + " ändern";
     let createButtonText = document.getElementById("createButtonText");
     createButtonText.textContent = "Karteikarte ändern";
+    let deleteButtonText = document.getElementById("deleteButtonText");
+    deleteButtonText.textContent = "Karteikarte löschen";
     let questionInputField = document.getElementById("frontQuestion");
     questionInputField.value = card.front;
     let answerInputField = document.getElementById("backAnswer");
@@ -71,8 +74,9 @@ function getCreateSectionHTML(name) {
                 <div class="row space-above">
                     <div class="wrapping">
                         <div class="col-4 col-md-3 order-2 order-md-1 button-size">
-                            <div class="bg-dark text-white p-4 rounded-3 podium-card">
-                                <span class="fs-5">Eingaben löschen</span>
+                            <div class="bg-dark text-white p-4 rounded-3 podium-card" data-bs-toggle="modal"
+                        data-bs-target="#deleteCardModal">
+                                <span class="fs-5" id="deleteButtonText">Eingaben löschen</span>
                             </div>
                         </div>
                     </div>
@@ -89,14 +93,9 @@ function getCreateSectionHTML(name) {
         </div>`;
 }
 
-function updateButtonListener(card, menuCard){
+function updateButtonListener(card, menuCard) {
     let updateButton = document.getElementById("createButton");
-    updateButton.addEventListener("click", ()=>{
-        /* let cardsSection = document.getElementById(`cards-section${index}`);
-        let displayedCards = cardsSection.getElementsByClassName("menu-item");
-        displayedCards = [...displayedCards];
-        let changeMenuItem = displayedCards.filter((displayedCard)=>displayedCard.textContent == card.front)[0];
- */
+    updateButton.addEventListener("click", () => {
         let inputFront = document.getElementById("frontQuestion");
         let inputBack = document.getElementById("backAnswer");
         card.front = inputFront.value;
@@ -111,7 +110,7 @@ function addButtonListener(folder, index) {
     createButton.addEventListener("click", () => {
         let inputFront = document.getElementById("frontQuestion");
         let inputBack = document.getElementById("backAnswer");
-        let card = {front: inputFront.value, back: inputBack.value};
+        let card = { front: inputFront.value, back: inputBack.value };
         folder.cards.push(card);
 
         saveFolders();
@@ -121,4 +120,22 @@ function addButtonListener(folder, index) {
         displayCard.innerHTML = createCard(card.front);
         menuItem.appendChild(displayCard);
     });
+}
+
+
+function deleteButtonListener(folder, card, menuCard) {
+    let deleteButton = document.getElementById("card-delete-Button");
+    deleteButton.addEventListener("click", () => {
+        let deleteIndex = 2;//folder.cards.findIndex(c => c === card);
+        console.log("delete: " + deleteIndex);
+        folder.cards.splice(deleteIndex, 1);
+        saveFolders();
+        bootstrap.Modal.getInstance(document.getElementById("deleteCardModal")).hide();
+        removeCardFromSidebar(menuCard);
+    });
+}
+
+
+function removeCardFromSidebar(menuCard) {
+    menuCard.remove();
 }
