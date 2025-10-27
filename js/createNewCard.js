@@ -22,6 +22,7 @@ export function showCreateSection(folder, index, update, card, menuCard) {
     } else {
         addButtonListener(folder, index);
     }
+    imageUploadEventListener();
 }
 
 function changeCardView(folder, card) {
@@ -90,6 +91,7 @@ function getCreateSectionHTML(name) {
                     </div>
                 </div>
             </div>
+            <img id="testimage"></img>
             <div id="footer" class="mt-auto" style="margin-left: 20%;"></div>
         </div>`;
 }
@@ -143,4 +145,22 @@ function deleteButtonListener(folder, card, menuCard) {
 
 function removeCardFromSidebar(menuCard) {
     menuCard.remove();
+}
+
+
+function imageUploadEventListener() {
+    let imageUpload = document.getElementById("imageUpload");
+    console.log("ee");
+    imageUpload.addEventListener("change", () => {
+        let file = imageUpload.files[0];
+
+        let fr = new FileReader();
+        fr.onload = function () {
+            let base64String = fr.result;
+            console.log(base64String);
+            document.getElementById("testimage").src = base64String;
+
+        };
+        fr.readAsDataURL(file);
+    });
 }
