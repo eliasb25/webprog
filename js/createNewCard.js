@@ -125,13 +125,17 @@ function addButtonListener(folder, index) {
 
 function deleteButtonListener(folder, card, menuCard) {
     let deleteButton = document.getElementById("card-delete-Button");
+    deleteButton.replaceWith(deleteButton.cloneNode(true));
+    deleteButton = document.getElementById("card-delete-Button");
+
     deleteButton.addEventListener("click", () => {
-        let deleteIndex = 2;//folder.cards.findIndex(c => c === card);
+        let deleteIndex = folder.cards.findIndex(c => c == card);
         console.log("delete: " + deleteIndex);
         folder.cards.splice(deleteIndex, 1);
         saveFolders();
         bootstrap.Modal.getInstance(document.getElementById("deleteCardModal")).hide();
         removeCardFromSidebar(menuCard);
+        window.location.href = "index.html";
     });
 }
 
