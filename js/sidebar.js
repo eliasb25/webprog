@@ -84,7 +84,7 @@ function addSingleCardEventListener(menuCard, index) {
         let folderIndex = folders.findIndex((folder) => folder.name == text);
         let card = folders[folderIndex].cards[index]
         console.log(card); //Die Ordnernamen müssen hierfür eindeutig sein
-        showCreateSection(folders[folderIndex], folderIndex, true, card);
+        showCreateSection(folders[folderIndex], folderIndex, true, card, menuCard);
     });
 }
 

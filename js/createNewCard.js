@@ -1,7 +1,7 @@
 import { createCard } from "./createMenuItem.js";
 import { saveFolders } from "./sidebar.js";
 
-export function showCreateSection(folder, index, update, card) {
+export function showCreateSection(folder, index, update, card, menuCard) {
     console.log(folder.name);
     let mainView = document.getElementById("mainView");
     if (mainView != null) {
@@ -16,7 +16,7 @@ export function showCreateSection(folder, index, update, card) {
     }
     if(update){
         changeCardView(folder, card);
-        updateButtonListener(card);
+        updateButtonListener(card, menuCard);
     }else{
         addButtonListener(folder, index);
     }
@@ -89,15 +89,20 @@ function getCreateSectionHTML(name) {
         </div>`;
 }
 
-function updateButtonListener(card){
+function updateButtonListener(card, menuCard){
     let updateButton = document.getElementById("createButton");
     updateButton.addEventListener("click", ()=>{
+        /* let cardsSection = document.getElementById(`cards-section${index}`);
+        let displayedCards = cardsSection.getElementsByClassName("menu-item");
+        displayedCards = [...displayedCards];
+        let changeMenuItem = displayedCards.filter((displayedCard)=>displayedCard.textContent == card.front)[0];
+ */
         let inputFront = document.getElementById("frontQuestion");
         let inputBack = document.getElementById("backAnswer");
         card.front = inputFront.value;
         card.back = inputBack.value;
         saveFolders();
-        
+        menuCard.textContent = inputFront.value;
     });
 }
 
