@@ -148,14 +148,19 @@ function addCardsEventListeners() {
     let menuItems = [...menuItemsAll].filter((element) => element.classList.length == 1);
 
     for (let i = 0; i < menuItems.length; i++) {
-        menuItems[i].addEventListener("click", (event) => {
-            let parent = event.target.parentElement.parentElement.parentElement.parentElement;
-            let text = parent.querySelector(".accordion-button").innerText;
-            text += " - " + event.target.innerText;
-
-            console.log(text);
-        })
+        addSingleCardEventListener(menuItems[i], i);
     }
+}
+
+function addSingleCardEventListener(menuCard, index) {
+    menuCard.addEventListener("click", () => {
+        let menuItem = menuCard.parentElement.parentElement.parentElement.parentElement.parentElement;
+        let text = menuItem.querySelector(".flex-grow-1").textContent;
+        let folderIndex = folders.findIndex((folder) => folder.name == text);
+        let card = folders[folderIndex].cards[index]
+        console.log(card); //Die Ordnernamen müssen hierfür eindeutig sein
+        showCreateSection(folders[folderIndex], folderIndex, true, card, menuCard);
+    });
 }
 
 function addButtonsEventListeners() {

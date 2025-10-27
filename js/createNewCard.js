@@ -1,7 +1,7 @@
 import { createCard } from "./createMenuItem.js";
 import { saveFolders } from "./sidebar.js";
 
-export function showCreateSection(folder, index) {
+export function showCreateSection(folder, index, update, card, menuCard) {
     console.log(folder.name);
     let mainView = document.getElementById("mainView");
     if (mainView != null) {
@@ -14,7 +14,23 @@ export function showCreateSection(folder, index) {
     } else {
         updateCreateSection(folder);
     }
-    addButtonListener(folder, index);
+    if(update){
+        changeCardView(folder, card);
+        updateButtonListener(card, menuCard);
+    }else{
+        addButtonListener(folder, index);
+    }
+}
+
+function changeCardView(folder, card){
+    let heading = document.getElementById("heading-createView");
+    heading.textContent = "Karteikarte für "+folder.name+" ändern";
+    let createButtonText = document.getElementById("createButtonText");
+    createButtonText.textContent = "Karteikarte ändern";
+    let questionInputField = document.getElementById("frontQuestion");
+    questionInputField.value = card.front;
+    let answerInputField = document.getElementById("backAnswer");
+    answerInputField.value = card.back;
 }
 
 function updateCreateSection(folder) {
@@ -26,7 +42,7 @@ function getCreateSectionHTML(name) {
     return `<div class="container my-5" style="margin-left: auto; margin-right: auto">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <h2 class="text-center mb-4">Neue Karteikarte für ${name} erstellen</h2>
+                    <h2 class="text-center mb-4" id="heading-createView">Neue Karteikarte für ${name} erstellen</h2>
                     <div class="card p-4 custom-card-shadow padding-top">
 
                         <form>
@@ -63,7 +79,7 @@ function getCreateSectionHTML(name) {
                     <div class="wrapping">
                         <div class="col-4 col-md-3 order-2 order-md-1 button-size" id="createButton">
                             <div class="bg-yellow p-4 rounded-3 podium-card">
-                                <span class="fs-5">Karteikarte anlegen</span>
+                                <span class="fs-5" id="createButtonText">Karteikarte anlegen</span>
                             </div>
                         </div>
                     </div>
@@ -71,6 +87,23 @@ function getCreateSectionHTML(name) {
             </div>
             <div id="footer" class="mt-auto" style="margin-left: 20%;"></div>
         </div>`;
+}
+
+function updateButtonListener(card, menuCard){
+    let updateButton = document.getElementById("createButton");
+    updateButton.addEventListener("click", ()=>{
+        /* let cardsSection = document.getElementById(`cards-section${index}`);
+        let displayedCards = cardsSection.getElementsByClassName("menu-item");
+        displayedCards = [...displayedCards];
+        let changeMenuItem = displayedCards.filter((displayedCard)=>displayedCard.textContent == card.front)[0];
+ */
+        let inputFront = document.getElementById("frontQuestion");
+        let inputBack = document.getElementById("backAnswer");
+        card.front = inputFront.value;
+        card.back = inputBack.value;
+        saveFolders();
+        menuCard.textContent = inputFront.value;
+    });
 }
 
 function addButtonListener(folder, index) {
