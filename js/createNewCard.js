@@ -1,5 +1,6 @@
 import { createCard } from "./createMenuItem.js";
 import { saveFolders } from "./sidebar.js";
+import { getDateString } from "./date.js";
 
 export function showCreateSection(folder, index, update, card, menuCard) {
     console.log(folder.name);
@@ -110,7 +111,7 @@ function addButtonListener(folder, index) {
     createButton.addEventListener("click", () => {
         let inputFront = document.getElementById("frontQuestion");
         let inputBack = document.getElementById("backAnswer");
-        let card = { front: inputFront.value, back: inputBack.value };
+        let card = { front: inputFront.value, back: inputBack.value, nextReviewDate: getDateString(new Date()) };
         folder.cards.push(card);
 
         saveFolders();
