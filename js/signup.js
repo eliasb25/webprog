@@ -12,8 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const userExists = users.find(user => user.email === email);
 
+        const signUpElementSuccess = document.getElementById('signUpModalSuccess');
+        if (!signUpElementSuccess) return;
+        const signUpModalSuccess = bootstrap.Modal.getOrCreateInstance(signUpElementSuccess);
+        const signUpModalLabelSuccess = document.getElementById('signUpModalLabelSuccess');
+
+        const signUpElement = document.getElementById('signUpModal');
+        if (!signUpElement) return;
+        const signUpModal = bootstrap.Modal.getOrCreateInstance(signUpElement);
+        const signUpModalLabel = document.getElementById('signUpModalLabel');
+
         if (userExists) {
-            alert("Diese E-Mail-Adresse ist bereits registriert!");
+            signUpModalLabel.innerText = 'Diese E-Mail-Adresse ist bereits registriert!';
+            signUpModal.show();
         } else {
             users.push({ 
                 email: email, 
@@ -25,9 +36,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             localStorage.setItem("users", JSON.stringify(users));
 
-            alert("Registrierung erfolgreich! Du kannst dich jetzt anmelden.");
-
-            window.location.href = "login-page.html";
+            signUpModalLabelSuccess.innerText = 'Registrierung erfolgreich! Du kannst dich jetzt anmelden.';
+            signUpModalSuccess.show();
         }
     });
+
+    const acceptButton = document.getElementById("acceptButton");
+
+    if (acceptButton) {
+        acceptButton.addEventListener("click", function() {
+            window.location.href = "login-page.html";
+        });
+    }
 });
