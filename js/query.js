@@ -1,3 +1,6 @@
+import { saveFolders } from "./sidebar.js";
+import { getDateString } from "./date.js";
+
 let folderIndex = new URLSearchParams(window.location.search).get('folderIndex');
 
 
@@ -8,13 +11,10 @@ if (localStorage.getItem("Folders")) {
     folders = JSON.parse(jsonString);
 }
 
-let cardIndex = 0;
+let cardIndex = new URLSearchParams(window.location.search).get('cardIndex');
 
-if (localStorage.getItem("cardIndex")) {
-    cardIndex = localStorage.getItem("cardIndex");
-}
-else {
-    localStorage.setItem("cardIndex", cardIndex);
+if (cardIndex === null) {
+    window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=0`;
 }
 
 
@@ -66,21 +66,34 @@ function getBack(back) {
 function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
     let rightButton = document.getElementById("rightBtn");
     rightButton.addEventListener("click", () => {
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        currentCard.nextReviewDate = getDateString(tomorrow);
+        // saveFolders();
+        const jsonString = JSON.stringify(folders, null, 2);
+        localStorage.setItem("Folders", jsonString);
+        
         if (cardIndex < folders[folderIndex].cards.length - 1) {
+            // for(let i = 0; i < folders[folderIndex].cards.length; i++){
+            //     if (folders[folderIndex].cards[i].nextReviewDate === getDateString(tomorrow)) {
+            //         cardIndex++;
+            //     }
+            // }
             cardIndex++;
-            localStorage.setItem("cardIndex", cardIndex);
             currentCard = folders[folderIndex].cards[cardIndex];
-            location.reload();
+            // if (cardIndex < folders[folderIndex].cards.length - 1) {
+                window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=${cardIndex}`;
+            // }
+            // else {
+            //     window.location.href = "learning-page-done.html";
+            // }
         } else {
-            localStorage.setItem("cardIndex", 0);
-
-            
             window.location.href = "learning-page-done.html";
         }
     });
 
     let wrongButton = document.getElementById("wrongBtn");
     wrongButton.addEventListener("click", () => {
-
+        location.reload();
     });
 }
