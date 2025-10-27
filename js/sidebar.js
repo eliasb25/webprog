@@ -231,6 +231,10 @@ function addDeckActionEventListeners() {
             event.preventDefault();
             event.stopPropagation();
 
+
+            window.location.href = `learning-page.html?folderIndex=${event.currentTarget.dataset.folderIndex}`;
+            
+
         });
     });
 }

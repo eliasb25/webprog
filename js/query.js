@@ -1,52 +1,43 @@
+let folderIndex = new URLSearchParams(window.location.search).get('folderIndex');
 
 
 
-
-initialize(0);
-
-
-
-export function initialize(folderIndex) {
-
-    let folders = [];
-    if (localStorage.getItem("Folders")) {
-        const jsonString = localStorage.getItem("Folders");
-        folders = JSON.parse(jsonString);
-    }
-
-    let cardIndex = 0;
-
-    if (localStorage.getItem("cardIndex")) {
-        cardIndex = localStorage.getItem("cardIndex");
-    }
-    else {
-        localStorage.setItem("cardIndex", cardIndex);
-    }
-
-    
-
-    let currentCard = folders[folderIndex].cards[cardIndex];
-
-
-    window.addEventListener("load", () => {
-        let deckTitle = document.getElementById("deckTitle");
-        deckTitle.innerText = folders[folderIndex].name;
-
-        let frontCard = document.getElementById("frontInput");
-        frontCard.innerText = currentCard.front;
-
-
-        let checkButton = document.getElementById("checkBtn");
-        checkButton.addEventListener("click", () => {
-            let form = document.getElementById("cardForm");
-            checkButton.style.display = "none";
-            form.innerHTML += getBack(currentCard.back);
-            addButtonListeners(folders, folderIndex, cardIndex, currentCard);
-        });
-    });
-
-    
+let folders = [];
+if (localStorage.getItem("Folders")) {
+    const jsonString = localStorage.getItem("Folders");
+    folders = JSON.parse(jsonString);
 }
+
+let cardIndex = 0;
+
+if (localStorage.getItem("cardIndex")) {
+    cardIndex = localStorage.getItem("cardIndex");
+}
+else {
+    localStorage.setItem("cardIndex", cardIndex);
+}
+
+
+
+let currentCard = folders[folderIndex].cards[cardIndex];
+
+
+window.addEventListener("load", () => {
+    let deckTitle = document.getElementById("deckTitle");
+    deckTitle.innerText = folders[folderIndex].name;
+
+    let frontCard = document.getElementById("frontInput");
+    frontCard.innerText = currentCard.front;
+
+
+    let checkButton = document.getElementById("checkBtn");
+    checkButton.addEventListener("click", () => {
+        let form = document.getElementById("cardForm");
+        checkButton.style.display = "none";
+        form.innerHTML += getBack(currentCard.back);
+        addButtonListeners(folders, folderIndex, cardIndex, currentCard);
+    });
+});
 
 
 
