@@ -1,3 +1,5 @@
+import { getDateString } from "./date.js";
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const loginForm = document.getElementById("login-form");
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const userFound = users.find(user => user.email === email && user.password === password);
 
         if (userFound) {
-            const today = getTodayDateString();
+            const today = getDateString(new Date());
             const yesterday = getYesterdayDateString();
             const lastLogin = userFound.lastLoginDate;
 
@@ -62,19 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function getTodayDateString() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Monate sind 0-indiziert
-    const day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-}
-
 function getYesterdayDateString() {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    const year = yesterday.getFullYear();
-    const month = String(yesterday.getMonth() + 1).padStart(2, '0');
-    const day = String(yesterday.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return getDateString(yesterday);
 }
