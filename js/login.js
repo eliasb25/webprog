@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const email = document.getElementById("emailInput").value;
         const password = document.getElementById("passwordInput").value;
+        const loginError = document.getElementById("login-error");
+
+        loginError.style.display = "none";
+        loginError.innerText = "";
 
         const users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -52,7 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
             sessionStorage.setItem("currentUserEmail", userFound.email);
             window.location.href = "index.html";
         } else {
-            alert("Falsche E-Mail oder falsches Passwort.");
+            loginError.innerText = 'Falsche E-Mail oder falsches Passwort.';
+            loginError.style.display = "block";
         }
     });
 });
