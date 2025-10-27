@@ -1,4 +1,5 @@
 import { createCard } from "./createMenuItem.js";
+import { saveFolders } from "./sidebar.js";
 
 export function showCreateSection(folder, index) {
     console.log(folder.name);
@@ -79,6 +80,8 @@ function addButtonListener(folder, index) {
         let inputBack = document.getElementById("backAnswer");
         let card = {front: inputFront.value, back: inputBack.value};
         folder.cards.push(card);
+
+        saveFolders();
 
         let menuItem = document.getElementById(`cards-section${index}`);
         let displayCard = document.createElement("div");

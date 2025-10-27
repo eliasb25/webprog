@@ -17,11 +17,15 @@ window.addEventListener("load", () => {
         folders.push(folder);
         createFolders(folders);
 
-        const jsonString = JSON.stringify(folders, null, 2);
-        localStorage.setItem("Folders", jsonString);
+        saveFolders();
     });
     createFolders(folders);
 });
+
+export function saveFolders() {
+    const jsonString = JSON.stringify(folders, null, 2);
+    localStorage.setItem("Folders", jsonString);
+}
 
 function createFolders(folders) {
     fetch('sidebar.html') // The path to the HTML file
