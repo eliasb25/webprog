@@ -36,6 +36,14 @@ window.addEventListener("load", () => {
         let form = document.getElementById("cardForm");
         checkButton.style.display = "none";
         form.innerHTML += getBack(currentCard.back);
+
+        let img = document.getElementById("testimage");
+        if (currentCard.image && currentCard.image != '') {
+            img.src = currentCard.image;
+        } else {
+            img.style.display = "none";
+        }
+
         addButtonListeners(folders, folderIndex, cardIndex, currentCard);
     });
 });
@@ -52,6 +60,7 @@ function getBack(back) {
     return `<div class="mb-1"> <label for="frontInput" class="form-label">Back</label>
                         <p class="form-control-plaintext highlight-card" id="frontInput">${back}</p>
                     </div>
+                    <img id="testimage"></img>
                     <div class="text-center mt-5">
                         <button id="wrongBtn" type="button" class="btn align-items-center mx-2 icon-button">
                             <img class="icon-lg" src="rsc/x-circle.svg" alt="Wrong">
