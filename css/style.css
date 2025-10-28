@@ -31,6 +31,7 @@ a {
 
 .navbar {
     width: 100%;
+    padding-left: 15px;
     position: fixed;
 }
 
@@ -320,6 +321,7 @@ a {
         background-color: whitesmoke;
         bottom: 0;
         z-index: 1000;
+        padding: 20px;
         width: 20% !important;
         max-width: none !important;
         transform: none !important;
