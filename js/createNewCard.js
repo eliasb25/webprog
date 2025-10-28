@@ -2,6 +2,9 @@ import { createCard } from "./createMenuItem.js";
 import { saveFolders } from "./sidebar.js";
 import { getDateString } from "./date.js";
 
+
+let image = '';
+
 export function showCreateSection(folder, index, update, card, menuCard) {
     console.log(folder.name);
     let mainView = document.getElementById("mainView");
@@ -36,6 +39,12 @@ function changeCardView(folder, card) {
     questionInputField.value = card.front;
     let answerInputField = document.getElementById("backAnswer");
     answerInputField.value = card.back;
+
+    if (card.image != '') {
+        let imageDisplay = document.getElementById("testimage");
+        //console.log(card.image);
+        imageDisplay.src = card.image;
+    }
 }
 
 function updateCreateSection(folder) {
@@ -103,6 +112,9 @@ function updateButtonListener(card, menuCard) {
         let inputBack = document.getElementById("backAnswer");
         card.front = inputFront.value;
         card.back = inputBack.value;
+        if(image != ''){
+            card.image = image;
+        }
         saveFolders();
         menuCard.textContent = inputFront.value;
     });
@@ -113,9 +125,9 @@ function addButtonListener(folder, index) {
     createButton.addEventListener("click", () => {
         let inputFront = document.getElementById("frontQuestion");
         let inputBack = document.getElementById("backAnswer");
-        let card = { front: inputFront.value, back: inputBack.value, nextReviewDate: getDateString(new Date()) };
+        //console.log(image);
+        let card = { front: inputFront.value, back: inputBack.value, nextReviewDate: getDateString(new Date()), image: image };
         folder.cards.push(card);
-
         saveFolders();
 
         let menuItem = document.getElementById(`cards-section${index}`);
@@ -157,7 +169,8 @@ function imageUploadEventListener() {
         let fr = new FileReader();
         fr.onload = function () {
             let base64String = fr.result;
-            console.log(base64String);
+            image = base64String;
+            //console.log(base64String);
             document.getElementById("testimage").src = base64String;
 
         };
