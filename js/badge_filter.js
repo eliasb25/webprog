@@ -5,22 +5,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const badges = badgeContainer.querySelectorAll('[data-status]');
 
     function filterBadges() {
-        const selectedValue = filterSelect.value;
+        const badges = badgeContainer.querySelectorAll('[data-status]');
+        const selectedValue = filterSelect.value.toLowerCase();
 
         badges.forEach(badge => {
-            const status = badge.getAttribute('data-status');
-
-            if (selectedValue === 'alle') {
+            const status = badge.getAttribute('data-status').toLowerCase();
+            if (selectedValue === 'alle' || status === selectedValue) {
                 badge.classList.remove('d-none');
             } else {
-                if (status === 'erreichte') {
-                    badge.classList.remove('d-none');
-                } else {
-                    badge.classList.add('d-none');
-                }
+                badge.classList.add('d-none');
             }
         });
     }
+
 
     filterBadges();
 

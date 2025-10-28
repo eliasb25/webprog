@@ -1,9 +1,6 @@
-import { saveFolders } from "./sidebar.js";
 import { getDateString } from "./date.js";
 
 let folderIndex = new URLSearchParams(window.location.search).get('folderIndex');
-
-
 
 let folders = [];
 if (localStorage.getItem("Folders")) {
@@ -17,11 +14,6 @@ if (cardIndex === null) {
 }
 skipLearnedCards();
 let currentCard = folders[folderIndex].cards[cardIndex];
-
-
-
-
-
 
 window.addEventListener("load", () => {
     let deckTitle = document.getElementById("deckTitle");
@@ -48,14 +40,6 @@ window.addEventListener("load", () => {
     });
 });
 
-
-
-
-
-
-
-
-
 function getBack(back) {
     return `<div class="mb-1"> <label for="frontInput" class="form-label">Back</label>
                         <p class="form-control-plaintext highlight-card" id="frontInput">${back}</p>
@@ -70,8 +54,6 @@ function getBack(back) {
                         </button>
                     </div>`;
 }
-
-
 
 function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
     let rightButton = document.getElementById("rightBtn");
