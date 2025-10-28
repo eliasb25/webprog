@@ -1,3 +1,6 @@
+import { saveFolders } from "./sidebar.js";
+import { getDateString } from "./date.js";
+
 let folderIndex = new URLSearchParams(window.location.search).get('folderIndex');
 
 
@@ -8,18 +11,16 @@ if (localStorage.getItem("Folders")) {
     folders = JSON.parse(jsonString);
 }
 
-let cardIndex = 0;
-
-if (localStorage.getItem("cardIndex")) {
-    cardIndex = localStorage.getItem("cardIndex");
+let cardIndex = new URLSearchParams(window.location.search).get('cardIndex');
+if (cardIndex === null) {
+    window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=0`;
 }
-else {
-    localStorage.setItem("cardIndex", cardIndex);
-}
-
-
-
+skipLearnedCards();
 let currentCard = folders[folderIndex].cards[cardIndex];
+
+
+
+
 
 
 window.addEventListener("load", () => {
@@ -66,21 +67,42 @@ function getBack(back) {
 function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
     let rightButton = document.getElementById("rightBtn");
     rightButton.addEventListener("click", () => {
-        if (cardIndex < folders[folderIndex].cards.length - 1) {
-            cardIndex++;
-            localStorage.setItem("cardIndex", cardIndex);
-            currentCard = folders[folderIndex].cards[cardIndex];
-            location.reload();
-        } else {
-            localStorage.setItem("cardIndex", 0);
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        currentCard.nextReviewDate = getDateString(tomorrow);
 
-            
+        const jsonString = JSON.stringify(folders, null, 2);
+        localStorage.setItem("Folders", jsonString);
+
+        skipLearnedCards();
+        
+        if (cardIndex < folders[folderIndex].cards.length - 1) {
+            currentCard = folders[folderIndex].cards[cardIndex];
+            window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=${cardIndex}`;
+        } else {
             window.location.href = "learning-page-done.html";
         }
     });
 
     let wrongButton = document.getElementById("wrongBtn");
     wrongButton.addEventListener("click", () => {
-
+        location.reload();
     });
+}
+
+function skipLearnedCards() {
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    while (cardIndex < folders[folderIndex].cards.length - 1) {
+        if (folders[folderIndex].cards[cardIndex].nextReviewDate !== getDateString(tomorrow)) {
+            break;
+        }
+        cardIndex++;
+    }
+    for (let i=0; i < folders[folderIndex].cards.length; i++) {
+        if (folders[folderIndex].cards[i].nextReviewDate !== getDateString(tomorrow)) {
+            return;
+        }
+    }
+    window.location.href = "learning-page-done.html";
 }
