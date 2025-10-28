@@ -12,14 +12,15 @@ if (localStorage.getItem("Folders")) {
 }
 
 let cardIndex = new URLSearchParams(window.location.search).get('cardIndex');
-
 if (cardIndex === null) {
     window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=0`;
 }
-
-
-
+skipLearnedCards();
 let currentCard = folders[folderIndex].cards[cardIndex];
+
+
+
+
 
 
 window.addEventListener("load", () => {
@@ -69,24 +70,15 @@ function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
         let tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         currentCard.nextReviewDate = getDateString(tomorrow);
-        // saveFolders();
+
         const jsonString = JSON.stringify(folders, null, 2);
         localStorage.setItem("Folders", jsonString);
+
+        skipLearnedCards();
         
         if (cardIndex < folders[folderIndex].cards.length - 1) {
-            // for(let i = 0; i < folders[folderIndex].cards.length; i++){
-            //     if (folders[folderIndex].cards[i].nextReviewDate === getDateString(tomorrow)) {
-            //         cardIndex++;
-            //     }
-            // }
-            cardIndex++;
             currentCard = folders[folderIndex].cards[cardIndex];
-            // if (cardIndex < folders[folderIndex].cards.length - 1) {
-                window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=${cardIndex}`;
-            // }
-            // else {
-            //     window.location.href = "learning-page-done.html";
-            // }
+            window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=${cardIndex}`;
         } else {
             window.location.href = "learning-page-done.html";
         }
@@ -96,4 +88,21 @@ function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
     wrongButton.addEventListener("click", () => {
         location.reload();
     });
+}
+
+function skipLearnedCards() {
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    while (cardIndex < folders[folderIndex].cards.length - 1) {
+        if (folders[folderIndex].cards[cardIndex].nextReviewDate !== getDateString(tomorrow)) {
+            break;
+        }
+        cardIndex++;
+    }
+    for (let i=0; i < folders[folderIndex].cards.length; i++) {
+        if (folders[folderIndex].cards[i].nextReviewDate !== getDateString(tomorrow)) {
+            return;
+        }
+    }
+    window.location.href = "learning-page-done.html";
 }
