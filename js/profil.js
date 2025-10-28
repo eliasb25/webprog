@@ -2,7 +2,7 @@ export function loadUserName() {
     const userEmail = sessionStorage.getItem("currentUserEmail");
     const trennzeichen = "@";
 
-    const userName = `Hey ${userEmail.split(trennzeichen)[0]}`;
+    const userName = `Hey ${userEmail.split(trennzeichen)[0].replace(/\b\w/g, l => l.toUpperCase())}`;
 
     const profil_name = document.getElementById("profile-email");
 

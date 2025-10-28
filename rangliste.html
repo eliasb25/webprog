@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/rangliste.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -54,28 +55,28 @@
             
             <div class="col-4 col-md-3 order-2 order-md-1">
                 <img src="https://i.pravatar.cc/150?img=1" class="rounded-circle profile-pic" alt="Profilbild Platz 2">
-                <p class="fw-bold mb-1 mt-2">Name</p>
+                <p class="fw-bold mb-1 mt-2" id="rank-2-name">Name</p>
                 <div class="bg-dark text-white p-4 rounded-3 podium-card">
                     <h2 class="fw-bolder">2.</h2>
-                    <span class="fs-5">14 gelernte Karten</span>
+                    <span class="fs-5" id="rank-2-score">0 gelernte Karten</span>
                 </div>
             </div>
 
             <div class="col-5 col-md-4 order-1 order-md-2">
                  <img src="https://i.pravatar.cc/150?img=2" class="rounded-circle profile-pic profile-pic-1" alt="Profilbild Platz 1" style="border-color: #ffc107;">
-                <p class="fw-bold mb-1 mt-2">Name</p>
+                <p class="fw-bold mb-1 mt-2" id="rank-1-name">Name</p>
                 <div class="bg-white border-2 border-dark p-5 rounded-3 podium-card">
                     <h1 class="fw-bolder">1.</h1>
-                    <span class="fs-4">15 gelernte Karten</span>
+                    <span class="fs-4" id="rank-1-score">0 gelernte Karten</span>
                 </div>
             </div>
 
             <div class="col-4 col-md-3 order-3 order-md-3">
                  <img src="https://i.pravatar.cc/150?img=3" class="rounded-circle profile-pic" alt="Profilbild Platz 3">
-                 <p class="fw-bold mb-1 mt-2">Name</p>
+                 <p class="fw-bold mb-1 mt-2" id="rank-3-name">Name</p>
                 <div class="p-4 rounded-3 podium-card" style="background-color: #FFFBEA;">
                     <h2 class="fw-bolder">3.</h2>
-                     <span class="fs-5">11 gelernte Karten</span>
+                     <span class="fs-5" id="rank-3-score">0 gelernte Karten</span>
                 </div>
             </div>
 
@@ -84,19 +85,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-7">
                 <div class="bg-body-tertiary p-4 rounded-3">
-                    <ul class="rank-list">
-                        <li>
-                            4. Name - 10 gelernte Karten
-                        </li>
-                        <li class="fw-bold">
-                            5. Helena Krämer (DU) - 9 gelernte Karten
-                        </li>
-                        <li>
-                            6. Name - 8 gelernte Karten
-                        </li>
-                         <li>
-                            7. Name - 7 gelernte Karten
-                        </li>
+                    <ul class="rank-list" id="rank-list-container">
                     </ul>
                 </div>
             </div>

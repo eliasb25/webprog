@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             users = JSON.parse(localStorage.getItem("users")) || [];
 
+            addUsers(users);
+
             tabLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault(); 
@@ -48,3 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("Kein Benutzer eingeloggt. Zeige Standard-Streak-Werte.");
             }
         });
+
+function addUsers(users) {
+     if(users.length < 2){
+       
+        for(let i = 1; i < 6; i++){
+        users.push({ 
+                email: `name${i}`, 
+                password: i, 
+                currentStreak: 0,
+                bestStreak: 0,
+                lastLoginDate: null,
+                totalCardsReviewed: 0
+            });
+        }
+
+        localStorage.setItem("users", JSON.stringify(users));
+     }
+}

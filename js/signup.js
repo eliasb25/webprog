@@ -4,14 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     signupForm.addEventListener("submit", function (event) {
         event.preventDefault();
-
-        const email = document.getElementById("emailInput").value;
-        const password = document.getElementById("passwordInput").value;
-
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-
-        const userExists = users.find(user => user.email === email);
-
+        
         const signUpElementSuccess = document.getElementById('signUpModalSuccess');
         if (!signUpElementSuccess) return;
         const signUpModalSuccess = bootstrap.Modal.getOrCreateInstance(signUpElementSuccess);
@@ -22,6 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const signUpModal = bootstrap.Modal.getOrCreateInstance(signUpElement);
         const signUpModalLabel = document.getElementById('signUpModalLabel');
 
+        const email = document.getElementById("emailInput").value;
+        const password = document.getElementById("passwordInput").value;
+
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+
+
+        const userExists = users.find(user => user.email === email);
         if (userExists) {
             signUpModalLabel.innerText = 'Diese E-Mail-Adresse ist bereits registriert!';
             signUpModal.show();
@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 password: password, 
                 currentStreak: 0,
                 bestStreak: 0,
-                lastLoginDate: null
+                lastLoginDate: null,
+                totalCardsReviewed: 0
             });
 
             localStorage.setItem("users", JSON.stringify(users));
