@@ -84,6 +84,18 @@ function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
         localStorage.setItem("Folders", jsonString);
 
         skipLearnedCards();
+
+        const userJson = localStorage.getItem("users");
+        let users = JSON.parse(userJson);
+        const currentUserEmail = sessionStorage.getItem("currentUserEmail");
+        let user = users.find(u => u.email === currentUserEmail);
+        if (user) {
+            if (!user.totalCardsReviewed) {
+                user.totalCardsReviewed = 0;
+            }
+            user.totalCardsReviewed += 1;
+            localStorage.setItem("users", JSON.stringify(users));
+        }
         
         if (cardIndex < folders[folderIndex].cards.length - 1) {
             currentCard = folders[folderIndex].cards[cardIndex];
