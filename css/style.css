@@ -29,8 +29,17 @@ a {
     background-color: whitesmoke;
 }
 
-.header {
+.navbar {
     width: 100%;
+    position: fixed;
+}
+
+.offcanvas {
+    margin-top: 68px;
+    background-color: whitesmoke;
+    height: calc(100vh - 50px);
+    position: solid;
+    overflow-y: scroll;
 }
 
 .sidebar {
@@ -43,6 +52,7 @@ a {
 }
 
 .page-display {
+    margin-top: 70px;
     height: 100%;
     display: flex;
     justify-content: space-between;

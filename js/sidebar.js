@@ -73,7 +73,7 @@ function createFolders(folders) {
             // Insert the fetched HTML content into the container
             container.innerHTML = htmlContent;
 
-            let menu = document.getElementById("accordionPanelsStayOpenExample");
+            let menu = document.getElementById("sidebar-body");
 
             for (let i = 0; i < folders.length; i++) {
                 let div = document.createElement("div");
@@ -154,7 +154,7 @@ function addCardsEventListeners() {
     }
 }
 
-function addSingleCardEventListener(menuCard, index) {
+export function addSingleCardEventListener(menuCard, index) {
     menuCard.addEventListener("click", () => {
         let menuItem = menuCard.parentElement.parentElement.parentElement.parentElement.parentElement;
         let text = menuItem.querySelector(".flex-grow-1").textContent;
