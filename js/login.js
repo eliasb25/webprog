@@ -33,22 +33,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 userFound.lastLoginDate = null;
             }
 
-            if (lastLogin === today) {
-                //passiert nix
-            } else if (lastLogin === yesterday) {
+            if (lastLogin === yesterday) {
                 userFound.currentStreak++;
                 if (userFound.currentStreak > userFound.bestStreak) {
                     userFound.bestStreak = userFound.currentStreak;
                 }
-                userFound.lastLoginDate = today;
             } else {
                 userFound.currentStreak = 1;
-                userFound.lastLoginDate = today;
                 if (userFound.bestStreak === 0) {
                     userFound.bestStreak = 1;
                 }
             }
-
+            userFound.lastLoginDate = today;
+            
             const userIndex = users.findIndex(user => user.email === userFound.email);
             if (userIndex !== -1) {
                 users[userIndex] = userFound;
