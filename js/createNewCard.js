@@ -70,6 +70,7 @@ function getCreateSectionHTML(name) {
                                 (optional)</label>
                             <input class="form-control custom-input-file" type="file" id="imageUpload" accept="image/*">
                         </div>
+                        <img id="testimage"></img>
                     </div>
                     </form>
                 </div>
@@ -91,7 +92,6 @@ function getCreateSectionHTML(name) {
                     </div>
                 </div>
             </div>
-            <img id="testimage"></img>
             <div id="footer" class="mt-auto" style="margin-left: 20%;"></div>
         </div>`;
 }
