@@ -36,6 +36,8 @@ function changeCardView(folder, card) {
     let deleteButtonText = document.getElementById("deleteButtonText");
     deleteButtonText.textContent = "Karteikarte löschen";
     let questionInputField = document.getElementById("frontQuestion");
+    console.log(folder);
+    console.log(card);
     questionInputField.value = card.front;
     let answerInputField = document.getElementById("backAnswer");
     answerInputField.value = card.back;

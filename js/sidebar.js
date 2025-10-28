@@ -160,7 +160,7 @@ function addSingleCardEventListener(menuCard, index) {
         let text = menuItem.querySelector(".flex-grow-1").textContent;
         let folderIndex = folders.findIndex((folder) => folder.name == text);
         let card = folders[folderIndex].cards[index]
-        console.log(card); //Die Ordnernamen müssen hierfür eindeutig sein
+        console.log(index); //Die Ordnernamen müssen hierfür eindeutig sein
         showCreateSection(folders[folderIndex], folderIndex, true, card, menuCard);
     });
 }
