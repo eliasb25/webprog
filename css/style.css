@@ -29,20 +29,29 @@ a {
     background-color: whitesmoke;
 }
 
-.header {
+.navbar {
     width: 100%;
+    position: fixed;
+}
+
+.offcanvas {
+    margin-top: 68px;
+    background-color: whitesmoke;
+    height: calc(100vh - 50px);
+    position: solid;
+    overflow-y: scroll;
 }
 
 .sidebar {
     padding: 20px;
     width: 20%;
-    height: 100vh;
     position: fixed;
     background-color: whitesmoke;
     overflow-y: scroll;
 }
 
 .page-display {
+    margin-top: 70px;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -300,4 +309,29 @@ a {
     margin-left: auto;
     display: flex;
     justify-content: center;
+}
+
+@media (min-width: 992px) { 
+    
+    /* 1. Hauptcontainer: Fixiert die Position und die Breite auf 20% */
+    #sidebar {
+        position: fixed; 
+        top: 70;
+        background-color: whitesmoke;
+        bottom: 0;
+        z-index: 1000;
+        width: 20% !important;
+        max-width: none !important;
+        transform: none !important;
+        visibility: visible !important;
+        border-right: 1px solid #dee2e6;
+    }
+
+    #sidebar.offcanvas-start {
+        left: 0 !important; 
+    }
+
+    #sidebar .btn-close {
+        display: none;
+    }
 }

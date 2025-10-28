@@ -28,7 +28,7 @@ window.addEventListener("load", () => {
 
         editModalSaveButton.addEventListener('click', () => {
             const newName = editModalInput.value.trim();
-            const index = editModalSaveButton.dataset.folderIndex; 
+            const index = editModalSaveButton.dataset.folderIndex;
 
             if (newName && index !== undefined && folders[index]) {
                 // Ordner umbenennen
@@ -46,8 +46,8 @@ window.addEventListener("load", () => {
         let deleteButton = document.getElementById("delete-löschenButton");
 
         deleteButton.addEventListener("click", () => {
-        const index = deleteButton.dataset.folderIndex; 
-            if(folders[index]){
+            const index = deleteButton.dataset.folderIndex;
+            if (folders[index]) {
                 folders.splice(index, 1); // Ordner aus dem Array entfernen
                 saveFolders();
                 createFolders(folders); // Sidebar neu aufbauen
@@ -73,7 +73,7 @@ function createFolders(folders) {
             // Insert the fetched HTML content into the container
             container.innerHTML = htmlContent;
 
-            let menu = document.getElementById("accordionPanelsStayOpenExample");
+            let menu = document.getElementById("sidebar-body");
 
             for (let i = 0; i < folders.length; i++) {
                 let div = document.createElement("div");
@@ -88,8 +88,8 @@ function createFolders(folders) {
 
                     // Dropdown-Container erstellen
                     let dropdownDiv = document.createElement("div");
-                    dropdownDiv.className = "dropdown ms-auto folder-options-dropdown"; 
-                    
+                    dropdownDiv.className = "dropdown ms-auto folder-options-dropdown";
+
                     dropdownDiv.innerHTML = `
                         <button class="btn btn-sm btn-light p-1 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-three-dots-vertical"></i>
@@ -112,7 +112,7 @@ function createFolders(folders) {
 
                     accordionButton.addEventListener('click', (event) => {
                         if (event.target.closest('.folder-options-dropdown')) {
-                            return; 
+                            return;
                         }
 
                         const collapseElement = document.querySelector(collapseTargetId);
@@ -154,13 +154,19 @@ function addCardsEventListeners() {
     }
 }
 
-function addSingleCardEventListener(menuCard, index) {
+export function addSingleCardEventListener(menuCard, index) {
     menuCard.addEventListener("click", () => {
         let menuItem = menuCard.parentElement.parentElement.parentElement.parentElement.parentElement;
         let text = menuItem.querySelector(".flex-grow-1").textContent;
         let folderIndex = folders.findIndex((folder) => folder.name == text);
-        let card = folders[folderIndex].cards[index]
-        console.log(index); //Die Ordnernamen müssen hierfür eindeutig sein
+        
+        let sum = 0;
+        for (let i = 0; i < folderIndex; i++) {
+            sum += folders[i].cards.length;
+        }
+        console.log("sum: " + sum);
+        let card = folders[folderIndex].cards[index - sum];
+        console.log(card); //Die Ordnernamen müssen hierfür eindeutig sein
         showCreateSection(folders[folderIndex], folderIndex, true, card, menuCard);
     });
 }
@@ -187,7 +193,7 @@ function addDeckActionEventListeners() {
     const editModalLabel = document.getElementById('editDeckModalLabel');
     const deleteModalButton = document.getElementById('delete-löschenButton');
     const deleteModalLabel = document.getElementById('deleteDeckModalLabel');
-    
+
     // --- Bearbeiten-Buttons ---
     document.querySelectorAll(".edit-deck-btn").forEach(button => {
         button.addEventListener("click", (event) => {
@@ -200,7 +206,7 @@ function addDeckActionEventListeners() {
 
             editModalLabel.innerText = `Ordner "${folder.name}" bearbeiten`;
             editModalInput.value = folder.name;
-            
+
             editModalSaveButton.dataset.folderIndex = index;
 
             editModal.show();
@@ -221,7 +227,7 @@ function addDeckActionEventListeners() {
 
             deleteModalButton.dataset.folderIndex = index;
 
-            deleteModal.show(); 
+            deleteModal.show();
         });
     });
 
@@ -233,7 +239,7 @@ function addDeckActionEventListeners() {
 
 
             window.location.href = `learning-page.html?folderIndex=${event.currentTarget.dataset.folderIndex}`;
-            
+
 
         });
     });
