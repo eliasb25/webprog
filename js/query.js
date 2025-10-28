@@ -8,10 +8,7 @@ if (localStorage.getItem("Folders")) {
     folders = JSON.parse(jsonString);
 }
 
-let cardIndex = new URLSearchParams(window.location.search).get('cardIndex');
-if (cardIndex === null) {
-    window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=0`;
-}
+let cardIndex = 0;
 skipLearnedCards();
 let currentCard = folders[folderIndex].cards[cardIndex];
 
@@ -36,7 +33,7 @@ window.addEventListener("load", () => {
             img.style.display = "none";
         }
 
-        addButtonListeners(folders, folderIndex, cardIndex, currentCard);
+        addButtonListeners(folders, folderIndex, currentCard);
     });
 });
 
@@ -55,7 +52,7 @@ function getBack(back) {
                     </div>`;
 }
 
-function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
+function addButtonListeners(folders, folderIndex, currentCard) {
     let rightButton = document.getElementById("rightBtn");
     rightButton.addEventListener("click", () => {
         let tomorrow = new Date();
@@ -67,28 +64,14 @@ function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
 
         skipLearnedCards();
 
-        const userJson = localStorage.getItem("users");
-        let users = JSON.parse(userJson);
-        const currentUserEmail = sessionStorage.getItem("currentUserEmail");
-        let user = users.find(u => u.email === currentUserEmail);
-        if (user) {
-            if (!user.totalCardsReviewed) {
-                user.totalCardsReviewed = 0;
-            }
-            user.totalCardsReviewed += 1;
-            localStorage.setItem("users", JSON.stringify(users));
-        }
+        incrementTotalCardsReviewed();
         
-        if (cardIndex < folders[folderIndex].cards.length - 1) {
-            currentCard = folders[folderIndex].cards[cardIndex];
-            window.location.href = `learning-page.html?folderIndex=${folderIndex}&cardIndex=${cardIndex}`;
-        } else {
-            window.location.href = "learning-page-done.html";
-        }
+        window.location.href = `learning-page.html?folderIndex=${folderIndex}`;
     });
 
     let wrongButton = document.getElementById("wrongBtn");
     wrongButton.addEventListener("click", () => {
+        skipLearnedCards();
         location.reload();
     });
 }
@@ -96,16 +79,30 @@ function addButtonListeners(folders, folderIndex, cardIndex, currentCard) {
 function skipLearnedCards() {
     let tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    while (cardIndex < folders[folderIndex].cards.length - 1) {
-        if (folders[folderIndex].cards[cardIndex].nextReviewDate !== getDateString(tomorrow)) {
-            break;
-        }
-        cardIndex++;
-    }
+
     for (let i=0; i < folders[folderIndex].cards.length; i++) {
         if (folders[folderIndex].cards[i].nextReviewDate !== getDateString(tomorrow)) {
+            do {
+                // cardIndex++;
+                cardIndex = Math.floor(Math.random() * folders[folderIndex].cards.length);
+            } while (folders[folderIndex].cards[cardIndex].nextReviewDate === getDateString(tomorrow));
+
             return;
         }
     }
     window.location.href = "learning-page-done.html";
+}
+
+function incrementTotalCardsReviewed(){
+    const userJson = localStorage.getItem("users");
+    let users = JSON.parse(userJson);
+    const currentUserEmail = sessionStorage.getItem("currentUserEmail");
+    let user = users.find(u => u.email === currentUserEmail);
+    if (user) {
+        if (!user.totalCardsReviewed) {
+            user.totalCardsReviewed = 0;
+        }
+        user.totalCardsReviewed += 1;
+        localStorage.setItem("users", JSON.stringify(users));
+    }
 }
