@@ -16,7 +16,6 @@ window.addEventListener("load", () => {
 
         folders.push(folder);
         createFolders(folders);
-
         saveFolders();
     });
 
@@ -68,7 +67,7 @@ function createFolders(folders) {
         .then(response => response.text()) // Get the response as text
         .then(htmlContent => {
             // Find the container element
-            const container = document.getElementById('sidebar');
+            const container = document.getElementById('sidebar-div');
 
             // Insert the fetched HTML content into the container
             container.innerHTML = htmlContent;
@@ -129,6 +128,7 @@ function createFolders(folders) {
             addCardsEventListeners();
             addButtonsEventListeners();
             addDeckActionEventListeners();
+            addShowSidebarListener();
         })
         .catch(error => {
             console.error('Error fetching the HTML file:', error);
@@ -159,7 +159,7 @@ export function addSingleCardEventListener(menuCard, index) {
         let menuItem = menuCard.parentElement.parentElement.parentElement.parentElement.parentElement;
         let text = menuItem.querySelector(".flex-grow-1").textContent;
         let folderIndex = folders.findIndex((folder) => folder.name == text);
-        
+
         let sum = 0;
         for (let i = 0; i < folderIndex; i++) {
             sum += folders[i].cards.length;
@@ -178,6 +178,17 @@ function addButtonsEventListeners() {
             showCreateSection(folders[i], i);
         });
     }
+}
+
+function addShowSidebarListener() {
+    document.getElementById("show-sidebar").addEventListener("click", () => {
+        let sidebar = document.getElementById("sidebar");
+        // sidebar.className = "";
+        // sidebar.classList.add("offcanvas");
+        // sidebar.classList.add("offcanvas-start");
+        // sidebar.classList.add("offcanvas");
+        // sidebar.classList.add("show");
+    });
 }
 
 function addDeckActionEventListeners() {
