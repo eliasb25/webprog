@@ -13,7 +13,7 @@ export function showCreateSection(folder, index, update, card, menuCard) {
         let parent = mainView.parentElement;
         mainView.remove();
         let div = document.createElement("div");
-        div.innerHTML = getCorrectCreateSectionHTML(folder.name);
+        div.innerHTML = getCreateSectionHTML(folder.name);
         div.classList.add("column");
         parent.appendChild(div);
     } else {
@@ -52,10 +52,10 @@ function changeCardView(folder, card) {
 
 function updateCreateSection(folder) {
     let view = document.querySelector(".column");
-    view.innerHTML = getCorrectCreateSectionHTML(folder.name);
+    view.innerHTML = getCreateSectionHTML(folder.name);
 }
 
-function getCorrectCreateSectionHTML(name) {
+function getCreateSectionHTML(name) {
     return `<h2 class="text-center mb-4" style="padding-top: 50px;" id="heading-createView">Neue Karteikarte für ${name} erstellen</h2>
 
     <div class="card p-4 custom-card-shadow padding-top">
@@ -101,59 +101,6 @@ function getCorrectCreateSectionHTML(name) {
         </div>
     </div>
 </div>`;
-}
-
-function getCreateSectionHTML(name) {
-    return `<div class="container my-5" style="margin-left: auto; margin-right: auto">
-            <div class="row justify-content-center">
-                <div class="column">
-                    <h2 class="text-center mb-4" id="heading-createView">Neue Karteikarte für ${name} erstellen</h2>
-                    <div class="card p-4 custom-card-shadow padding-top">
-
-                        <form>
-                            <div class="mb-4">
-                                <label for="frontQuestion" class="form-label custom-label-style">Vorderseite
-                                    (Frage)</label>
-                                <textarea class="form-control custom-input" id="frontQuestion" rows="3"
-                                    placeholder="Gib die Fragestellung ein..." required></textarea>
-                            </div>
-                    </div>
-                    <div class="card p-4 custom-card-shadow">
-                        <div class="mb-4">
-                            <label for="backAnswer" class="form-label custom-label-style">Rückseite (Antwort)</label>
-                            <textarea class="form-control custom-input" id="backAnswer" rows="5"
-                                placeholder="Gib die Antwort/Lösung ein..." required></textarea>
-                        </div>
-
-                        <div class="mb-5">
-                            <label for="imageUpload" class="form-label custom-label-style">Bild hinzufügen
-                                (optional)</label>
-                            <input class="form-control custom-input-file" type="file" id="imageUpload" accept="image/*">
-                        </div>
-                        <img id="testimage"></img>
-                    </div>
-                    </form>
-                </div>
-                <div class="row space-above">
-                    <div class="wrapping">
-                        <div class="col-4 col-md-3 order-2 order-md-1 button-size">
-                            <div class="bg-dark text-white p-4 rounded-3 podium-card" data-bs-toggle="modal"
-                        data-bs-target="#deleteCardModal">
-                                <span class="fs-5" id="deleteButtonText">Eingaben löschen</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapping">
-                        <div class="col-4 col-md-3 order-2 order-md-1 button-size" id="createButton">
-                            <div class="bg-yellow p-4 rounded-3 podium-card">
-                                <span class="fs-5" id="createButtonText">Karteikarte anlegen</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="footer" class="mt-auto" style="margin-left: 20%;"></div>
-        </div>`;
 }
 
 function updateButtonListener(card, menuCard) {
