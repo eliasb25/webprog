@@ -144,7 +144,7 @@ function createFolders(folders) {
     } */
 }
 
-function addCardsEventListeners() {
+export function addCardsEventListeners() {
     let menuItemsAll = document.getElementsByClassName("menu-item");
 
     let menuItems = [...menuItemsAll].filter((element) => element.classList.length == 1);
@@ -152,6 +152,12 @@ function addCardsEventListeners() {
     for (let i = 0; i < menuItems.length; i++) {
         addSingleCardEventListener(menuItems[i], i);
     }
+}
+
+export function removeCardsEventListeners(){
+    let menuItemsAll = document.getElementsByClassName("menu-item");
+    let menuItems = [...menuItemsAll].filter((element) => element.classList.length == 1);
+    menuItems.forEach(item=>item.replaceWith(item.cloneNode(true)));
 }
 
 export function addSingleCardEventListener(menuCard, index) {
@@ -166,7 +172,7 @@ export function addSingleCardEventListener(menuCard, index) {
         }
         console.log("sum: " + sum);
         let card = folders[folderIndex].cards[index - sum];
-        console.log(card); //Die Ordnernamen müssen hierfür eindeutig sein
+        console.log("index: " + index + " sum: " + sum); //Die Ordnernamen müssen hierfür eindeutig sein
         showCreateSection(folders[folderIndex], folderIndex, true, card, menuCard);
     });
 }
@@ -189,6 +195,12 @@ function addShowSidebarListener() {
         // sidebar.classList.add("offcanvas");
         // sidebar.classList.add("show");
     });
+}
+
+export function getTotalNumberOfCards() {
+    let num = 0;
+    folders.forEach(folder => num += folder.cards.length);
+    return num;
 }
 
 function addDeckActionEventListeners() {
