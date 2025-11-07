@@ -1,7 +1,8 @@
 import { createCard } from "./createMenuItem.js";
 import { saveFolders } from "./sidebar.js";
 import { getDateString } from "./date.js";
-import { addSingleCardEventListener } from "./sidebar.js";
+import { addCardsEventListeners } from "./sidebar.js";
+import {removeCardsEventListeners} from "./sidebar.js";
 
 
 let image = '';
@@ -131,9 +132,12 @@ function addButtonListener(folder, index) {
         let menuItem = document.getElementById(`cards-section${index}`);
         let displayCard = document.createElement("div");
         displayCard.innerHTML = createCard(card.front);
-        menuItem.appendChild(displayCard);
-        console.log("add listener");
-        addSingleCardEventListener(displayCard, folder.cards.length - 1);
+        // menuItem.appendChild(displayCard);
+        menuItem.insertAdjacentHTML("beforeend", createCard(card.front));
+        changeCardView(folder, card);
+        removeCardsEventListeners();
+        addCardsEventListeners();
+        // addSingleCardEventListener(displayCard.querySelector(".menu-item").parentElement, getTotalNumberOfCards() - 1);
     });
 }
 
