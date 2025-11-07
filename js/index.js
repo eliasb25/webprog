@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    
+
     const tabLinks = document.querySelectorAll('#list-tab .list-group-item');
 
     users = JSON.parse(localStorage.getItem("users")) || [];
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     } else {
         console.warn("Kein Benutzer eingeloggt. Zeige Standard-Streak-Werte.");
+        window.location.href = "login-page.html";
     }
 
     loadBadges();
