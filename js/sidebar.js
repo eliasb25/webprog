@@ -14,10 +14,21 @@ window.addEventListener("load", () => {
         let input = document.getElementById("verzeichnis-name");
         let folder = { name: input.value, cards: [] };
 
-        folders.push(folder);
-        createFolders(folders);
-        saveFolders();
+        let createFolderModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("exampleModal"));
+
+        if (!folderWithNameExists(input.value)) {
+            folders.push(folder);
+            createFolders(folders);
+            saveFolders();
+            createFolderModal.hide();
+        } else {
+            createFolderModal.hide();
+            bootstrap.Modal.getOrCreateInstance(document.getElementById("ElementExistsWarning")).show();
+        }
+
     });
+
+    addCloseWarningButtonEventListener();
 
     const editModalElement = document.getElementById('editDeckModal');
     if (editModalElement) {
@@ -56,6 +67,22 @@ window.addEventListener("load", () => {
     }
     createFolders(folders);
 });
+
+function folderWithNameExists(name) {
+    let num = folders.filter(folder => folder.name === name).length;
+    if (num > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function addCloseWarningButtonEventListener() {
+    console.log("listener");
+    document.getElementById("ElementExistsWarning").addEventListener("click", () => {
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("ElementExistsWarning")).hide();
+    });
+}
 
 export function saveFolders() {
     const jsonString = JSON.stringify(folders, null, 2);
@@ -154,10 +181,10 @@ export function addCardsEventListeners() {
     }
 }
 
-export function removeCardsEventListeners(){
+export function removeCardsEventListeners() {
     let menuItemsAll = document.getElementsByClassName("menu-item");
     let menuItems = [...menuItemsAll].filter((element) => element.classList.length == 1);
-    menuItems.forEach(item=>item.replaceWith(item.cloneNode(true)));
+    menuItems.forEach(item => item.replaceWith(item.cloneNode(true)));
 }
 
 export function addSingleCardEventListener(menuCard, index) {

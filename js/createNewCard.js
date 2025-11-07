@@ -2,7 +2,7 @@ import { createCard } from "./createMenuItem.js";
 import { saveFolders } from "./sidebar.js";
 import { getDateString } from "./date.js";
 import { addCardsEventListeners } from "./sidebar.js";
-import {removeCardsEventListeners} from "./sidebar.js";
+import { removeCardsEventListeners } from "./sidebar.js";
 
 
 let image = '';
@@ -104,6 +104,15 @@ function getCreateSectionHTML(name) {
 </div>`;
 }
 
+function cardWithFrontExistsInFolder(front, folder) {
+    let hits = folder.cards.filter(card => card.front === front).length;
+    if (hits > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function updateButtonListener(card, menuCard) {
     let updateButton = document.getElementById("createButton");
     updateButton.addEventListener("click", () => {
@@ -124,20 +133,23 @@ function addButtonListener(folder, index) {
     createButton.addEventListener("click", () => {
         let inputFront = document.getElementById("frontQuestion");
         let inputBack = document.getElementById("backAnswer");
-        //console.log(image);
         let card = { front: inputFront.value, back: inputBack.value, nextReviewDate: getDateString(new Date()), image: image };
-        folder.cards.push(card);
-        saveFolders();
 
-        let menuItem = document.getElementById(`cards-section${index}`);
-        let displayCard = document.createElement("div");
-        displayCard.innerHTML = createCard(card.front);
-        // menuItem.appendChild(displayCard);
-        menuItem.insertAdjacentHTML("beforeend", createCard(card.front));
-        changeCardView(folder, card);
-        removeCardsEventListeners();
-        addCardsEventListeners();
-        // addSingleCardEventListener(displayCard.querySelector(".menu-item").parentElement, getTotalNumberOfCards() - 1);
+        if (!cardWithFrontExistsInFolder(inputFront.value, folder)) {
+            folder.cards.push(card);
+            saveFolders();
+
+            let menuItem = document.getElementById(`cards-section${index}`);
+            let displayCard = document.createElement("div");
+            displayCard.innerHTML = createCard(card.front);
+            menuItem.insertAdjacentHTML("beforeend", createCard(card.front));
+            changeCardView(folder, card);
+            removeCardsEventListeners();
+            addCardsEventListeners();
+        } else {
+            document.getElementById("nameAlreadyExistsLabel").textContent = "Eine Karte mit dieser Frage existiert bereits. Verwende eine andere Frage!";
+            bootstrap.Modal.getOrCreateInstance(document.getElementById("ElementExistsWarning")).show();
+        }
     });
 }
 

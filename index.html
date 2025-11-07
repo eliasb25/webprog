@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div id="badge-box" class="bg-white text-black p-4 rounded-3 podium-card width60" style="margin-top: 20px;">
-                <p class="fs-5">Deine neuesten Badges:</p>
+                <p class="fs-5">Dein Badge Progress:</p>
             </div>
             <!-- <h3 class="offcanvas-title" style="margin-top: 20px;">Aktueller Streak</h3>
             <h1 class="offcanvas-title" style="margin-top: 5vh;">12 Tage</h1> -->
@@ -141,6 +141,25 @@
                 <div class="modal-footer">
                     <button type="button" id="card-delete-Button" class="btn btn-primary button"
                         style="width: auto;">Löschen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ElementExistsWarning" tabindex="-1" aria-labelledby="deleteDeckModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Achtung!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="nameAlreadyExistsLabel">
+                    Ein Ordner mit diesem Namen existiert bereits. Verwende einen anderen Namen!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close-warning" class="btn btn-primary button"
+                        style="width: auto;">Schließen</button>
                 </div>
             </div>
         </div>

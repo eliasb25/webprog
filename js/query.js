@@ -29,6 +29,7 @@ window.addEventListener("load", () => {
         let img = document.getElementById("testimage");
         if (currentCard.image && currentCard.image != '') {
             img.src = currentCard.image;
+            img.style.width = "100%";
         } else {
             img.style.display = "none";
         }
